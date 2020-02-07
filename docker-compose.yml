@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  nextjs:
+    command: npm run dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: "nextjs-usanails"
+    volumes:
+      - "./src:/usa_nails/src"
+      - "./pages:/usa_nails/pages"
+      - "./public:/usa_nails/public"
+      - /node_modules/
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3000:3000"
+    restart: "always"
