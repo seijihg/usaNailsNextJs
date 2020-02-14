@@ -21,7 +21,7 @@ interface Options {
 
 function create(initialState: any, { getToken }: Options) {
   const httpLink = createHttpLink({
-    uri: "http://localhost:4000/graphql",
+    uri: "http://localhost:8000/graphql",
     credentials: "same-origin"
   });
 

@@ -10,8 +10,13 @@
     "index-img-voucher index-img-interior index-img-interior index-img-interior"
     "index-opening-time index-img-interior index-img-interior index-img-interior"
     "index-img-shop1 index-welcome-brief index-img-shop2 index-follow-us"
-    "index-news index-news index-news index-news"
-    "index-our-services index-our-services index-img-shop3 index-img-shop3";
+    "index-call-appointment index-call-appointment index-call-appointment index-call-appointment"
+    "index-latest-news index-latest-news index-latest-news index-latest-news"
+    "index-news index-news index-blog index-blog"
+    "index-our-services index-our-services index-img-shop3 index-img-shop3"
+    "index-img-shop4 index-img-shop4 index-price-list index-price-list"
+    "about-us about-us reviews reviews"
+    "index-contact index-contact index-contact index-contact";
 
   .index-img-voucher {
     grid-area: index-img-voucher;
@@ -34,25 +39,86 @@
   .index-follow-us {
     grid-area: index-follow-us;
   }
+  .index-call-appointment {
+    grid-area: index-call-appointment;
+  }
+  .index-latest-news {
+    grid-area: index-latest-news;
+  }
+  .index-news {
+    grid-area: index-news;
+  }
+  .index-blog {
+    grid-area: index-blog;
+  }
   .index-our-services {
     grid-area: index-our-services;
   }
   .index-img-shop3 {
     grid-area: index-img-shop3;
   }
+  .index-img-shop4 {
+    grid-area: index-img-shop4;
+  }
+  .index-price-list {
+    grid-area: index-price-list;
+  }
+  .about-us {
+    grid-area: about-us;
+  }
+  .reviews {
+    grid-area: reviews;
+  }
+  .index-contact {
+    grid-area: index-contact;
+  }
   // <-- GRID TEMPLATE END
+
+  .index-img-interior {
+    overflow: hidden;
+    .index-img-interior-child {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: 1s;
+    }
+    .index-img-interior-child:hover {
+      transform: scale(1.2);
+    }
+    .index-img-interior-child {
+      height: 600px;
+      background-image: url("/assets/img/interior/img-interior.jpg");
+    }
+  }
   .index-img-voucher,
-  .index-img-interior,
   .index-img-shop1,
   .index-img-shop2,
-  .index-img-shop3 {
-    background: url("https://via.placeholder.com/700x700.png");
+  .index-img-shop3,
+  .index-img-shop4,
+  .index-call-appointment {
     background-size: cover;
     background-position: center;
   }
+  .index-img-voucher {
+    background-image: url("/assets/img/usanails_card.jpg");
+    height: 355px;
+  }
+  .index-img-shop1 {
+    background-image: url("/assets/img/interior/index-img-shop2.jpg");
+  }
+  .index-img-shop2 {
+    background-image: url("/assets/img/interior/index-img-shop1.jpg");
+  }
+  .index-img-shop3 {
+    background-image: url("/assets/img/interior/index-img-shop3.jpg");
+  }
+  .index-img-shop4 {
+    background-image: url("/assets/img/interior/index-img-shop4.jpg");
+  }
   .index-opening-time {
     color: $offwhite-colour;
-    background: $offblack-colour;
+    background: $pink-dark-colour;
     text-align: center;
     padding: 1rem;
     h1,
@@ -72,6 +138,8 @@
     }
   }
   .index-follow-us {
+    background: $pink-dark-colour;
+    color: $offwhite-colour;
     padding: 1rem;
     text-align: center;
     div {
@@ -79,15 +147,67 @@
       display: flex;
       justify-content: space-evenly;
     }
+    h1 {
+      margin-bottom: 1rem;
+    }
+  }
+  .index-call-appointment {
+    padding: 5rem 0;
+    text-align: center;
+    background-image: url("/assets/img/interior/index-img-shop5.jpg");
+    color: $offwhite-colour;
+  }
+  .index-latest-news {
+    text-align: center;
+    margin-bottom: 1rem;
+    h1 {
+      font-size: 1.2em;
+    }
+  }
+  .index-news {
+    background: $gray-colour;
+    padding: 2rem;
+    h1 {
+      font-size: 1em;
+      margin-bottom: 0.25rem;
+    }
+    h4 {
+      color: $pink-colour;
+      margin-bottom: 0.25rem;
+    }
+    .new-content {
+      margin-bottom: 0.5rem;
+    }
+  }
+  .index-blog {
+    background: $pink-dark-colour;
+    padding: 2rem;
+    color: $offwhite-colour;
+    display: flex;
+    justify-content: space-between;
+    h1,
+    h4 {
+      font-size: 1em;
+      margin-bottom: 0.25rem;
+    }
+    h4 {
+      color: $pink-colour;
+    }
   }
   .index-our-services {
     padding: 2rem;
+    background: $gray-colour;
+    h2,
+    li {
+      color: $dark-gray-colour;
+    }
     ul {
-      margin-bottom: 1rem;
+      margin: 3rem 0;
     }
     li {
-      list-style: inside;
-      list-style-type: circle;
+      list-style: none;
+      font-family: Alice;
+      font-size: 0.9em;
     }
     h1 {
       margin-bottom: 2rem;
@@ -102,5 +222,39 @@
         font-size: 0.7em;
       }
     }
+  }
+  .index-price-list {
+    padding: 2rem;
+    background: $gray-colour;
+    h1 {
+      padding-bottom: 1.5rem;
+    }
+    li {
+      display: flex;
+      justify-content: space-between;
+    }
+    .price-dot-line {
+      border-bottom: dotted 1px $pink-colour;
+      width: 70%;
+      margin-bottom: 6px;
+    }
+    h3 {
+      color: gray;
+    }
+  }
+  .about-us {
+    padding: 2rem;
+    background: $pink-dark-colour;
+    h1 {
+      padding-bottom: 1.5rem;
+      color: $offwhite-colour;
+    }
+    p {
+      color: $gray-colour;
+    }
+  }
+  .index-contact {
+    padding: 2rem;
+    background: $pink-dark-colour;
   }
 }

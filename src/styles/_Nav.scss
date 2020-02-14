@@ -7,11 +7,10 @@
   font-family: Font-Awesome;
   padding: 2rem 0;
   .index-logo {
-    padding: 0.5rem 0;
-    font-size: 1.5em;
-    letter-spacing: 0.25em;
+    width: 20%;
   }
   .nav-bar {
+    color: $pink-dark-colour;
     display: flex;
     justify-content: flex-end;
     align-items: center;
