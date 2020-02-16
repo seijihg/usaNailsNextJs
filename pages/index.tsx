@@ -6,6 +6,9 @@ import Prices from "src/components/price_list/Prices";
 import Contact from "src/components/Contact";
 
 const Index: NextPage = () => {
+  console.log(
+    "Welcome to USA Nails Dev Window. If you have any questions please contact our technical department."
+  );
   return (
     <Layout>
       <div className="index-main">

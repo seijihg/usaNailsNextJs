@@ -38,6 +38,7 @@ const Blogs: FunctionComponent = () => {
   const { loading, error, data: blogsData } = useQuery(getNewsQuery);
   return (
     <>
+      <h1>LATEST BLOGS</h1>
       {blogsData?.categories.edges[0].node.posts.edges.map((blog: IBlogs) => (
         <Blog key={blog.node.id} blog={blog.node} />
       ))}

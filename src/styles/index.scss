@@ -178,6 +178,25 @@
     .new-content {
       margin-bottom: 0.5rem;
     }
+    .latest-news {
+      padding-bottom: 0.75rem;
+      margin-bottom: 1rem;
+      border: solid;
+      border-width: 0 0 1px 0;
+      border-color: $pink-colour;
+    }
+    .new-content {
+      display: flex;
+    }
+    .read-more {
+      display: flex;
+      justify-content: flex-end;
+      cursor: pointer;
+      &:hover {
+        color: $pink-colour;
+        transition: color 250ms;
+      }
+    }
   }
   .index-blog {
     background: $pink-dark-colour;
@@ -232,14 +251,31 @@
     li {
       display: flex;
       justify-content: space-between;
+      list-style: none;
+      position: relative;
     }
     .price-dot-line {
       border-bottom: dotted 1px $pink-colour;
-      width: 70%;
+      width: 50%;
       margin-bottom: 6px;
+      position: absolute;
+      bottom: 0;
+      right: 2rem;
     }
     h3 {
       color: gray;
+    }
+    .category {
+      color: $pink-dark-colour;
+      cursor: pointer;
+      margin-bottom: 0.75rem;
+      &:hover {
+        color: $pink-colour;
+        transition: color 250ms;
+      }
+    }
+    .sub-category {
+      margin-bottom: 0.5rem;
     }
   }
   .about-us {

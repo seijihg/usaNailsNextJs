@@ -21,8 +21,13 @@ interface Options {
 
 function create(initialState: any, { getToken }: Options) {
   const httpLink = createHttpLink({
-    uri: "http://localhost:8000/graphql",
-    credentials: "same-origin"
+    uri: "http://usanails.uk.cloudlogin.co/graphql",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    fetchOptions: {
+      mode: "no-cors"
+    }
   });
 
   const authLink = setContext((_, { headers }) => {
