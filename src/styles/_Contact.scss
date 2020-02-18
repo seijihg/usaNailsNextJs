@@ -1,0 +1,49 @@
+.index-contact {
+  color: $offwhite-colour;
+  p {
+    color: $offwhite-colour;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  h2 {
+    margin-bottom: 1rem;
+  }
+  .contact {
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  input,
+  textarea {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+    resize: none;
+  }
+  .contact-left-column {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    .email {
+      a {
+        color: $pink-colour;
+        font-size: 0.8em;
+      }
+    }
+    .social {
+      img {
+        margin-right: 2rem;
+      }
+    }
+    .image {
+      grid-column: 1 / span 2;
+      background-size: cover;
+      background-position: center;
+      background-image: url("/assets/img/interior/img-interior01.jpg");
+      height: 10rem;
+    }
+  }
+}
