@@ -1,0 +1,17 @@
+.footer {
+  margin-top: 5rem;
+  background: $offblack-colour;
+  color: $offwhite-colour;
+  bottom: 0;
+  font-family: Font-Awesome;
+  img {
+    width: 20%;
+    filter: brightness(5);
+  }
+  .footer-inner {
+    padding: 2rem 0;
+    width: $maxWidth;
+    margin: auto;
+    text-align: center;
+  }
+}

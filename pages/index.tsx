@@ -1,7 +1,14 @@
-import { NextPage } from "next";
+import { NextPage, NextPageContext } from "next";
 import Layout from "src/components/Layout";
+import News from "src/components/news/News";
+import Blogs from "src/components/blogs/Blogs";
+import Prices from "src/components/price_list/Prices";
+import Contact from "src/components/Contact";
 
 const Index: NextPage = () => {
+  console.log(
+    "Welcome to USA Nails Dev Window. If you have any questions please contact our technical department."
+  );
   return (
     <Layout>
       <div className="index-main">
@@ -16,7 +23,7 @@ const Index: NextPage = () => {
           </div>
         </div>
         <div className="index-img-interior">
-          <img src="https://via.placeholder.com/870x496.png" alt="interior" />
+          <div className="index-img-interior-child"></div>
         </div>
         <div className="index-img-shop1"></div>
         <div className="index-welcome-brief">
@@ -39,7 +46,18 @@ const Index: NextPage = () => {
           <h1>ADDRESS</h1>
           <p>5 The Hall Walk, London Rd</p> <p>Berkhamsted HP4 2BU</p>
         </div>
-        <div className="index-news">Test</div>
+        <div className="index-call-appointment">
+          <h1>Call +44 1442 878 188 To Make Your Appointment</h1>
+        </div>
+        <div className="index-latest-news">
+          <h1>LATEST NEWS AND BLOGS</h1>
+        </div>
+        <div className="index-news">
+          <News />
+        </div>
+        <div className="index-blog">
+          <Blogs />
+        </div>
         <div className="index-our-services">
           <h1>OUR SERVICES</h1>
           <p>
@@ -50,9 +68,9 @@ const Index: NextPage = () => {
             positive experience and of course great looking nails!
           </p>
           <ul>
-            <li>NAIL EXTENSIONS</li>
-            <li>MANICURE & PEDICURE</li>
-            <li>NAIL DESIGN AND SERVICES</li>
+            <li>- NAIL EXTENSIONS</li>
+            <li>- MANICURE & PEDICURE</li>
+            <li>- NAIL DESIGN AND SERVICES</li>
           </ul>
           <div className="index-our-services-signature">
             <h2>USA NAILS</h2>
@@ -60,6 +78,31 @@ const Index: NextPage = () => {
           </div>
         </div>
         <div className="index-img-shop3"></div>
+        <div className="index-img-shop4"></div>
+        <div className="index-price-list">
+          <Prices />
+        </div>
+        <div className="about-us">
+          <h1>ABOUT US</h1>
+          <p>
+            Visiting us, you will receive a complimentary drink to make you
+            relax and unwind while you are in our safe hands. We use the best
+            quality products such as OPI, CND Shellac and Precision to transform
+            your hands and feet. Appointments are preferred, however should you
+            need a last minute revamp on your nails or feet then we will always
+            try to accommodate and walk-ins will be welcomed.
+          </p>
+        </div>
+        <div className="reviews">
+          <p>
+            Our spa offers a built- in ventilation system to bring you fresh
+            air, comfort and protection. Your safety and well-being are our top
+            priorities
+          </p>
+        </div>
+        <div className="index-contact">
+          <Contact />
+        </div>
       </div>
     </Layout>
   );

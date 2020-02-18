@@ -4,7 +4,11 @@ const Nav: FunctionComponent = (props) => {
   return (
     <>
       <div className="nav-main">
-        <div className="index-logo">USA Nails</div>
+        <img
+          className="index-logo"
+          src="/assets/img/usanails_logo.png"
+          alt="usa nails logo"
+        />
         <ul className="nav-bar">
           <li>HOME</li>
           <li>NEWS</li>

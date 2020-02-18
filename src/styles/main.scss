@@ -1,7 +1,9 @@
 $offwhite-colour: #fafafa;
 $offblack-colour: #0a0a0a;
 $gray-colour: #f4f4f4;
-$pink-colour: #d75fa3;
+$dark-gray-colour: #9b9b9b;
+$pink-colour: #f2a69a;
+$pink-dark-colour: #99525d;
 $maxWidth: 1200px;
 
 * {
@@ -16,22 +18,42 @@ body {
   font-size: 16px;
   line-height: 1.5;
   p {
-    font-size: 0.8em;
+    font-size: 0.85em;
+    color: $dark-gray-colour;
   }
-  h1 {
-    font-size: 1.3em;
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: Alice;
     font-weight: 200;
     letter-spacing: 0.1em;
   }
+  h1 {
+    font-size: 1.2em;
+  }
   h2 {
     font-size: 1em;
-    font-family: Alice;
-    font-weight: 100;
-    letter-spacing: 0.1em;
+  }
+  h3 {
+    font-size: 0.8em;
+  }
+  h4 {
+    font-size: 0.7em;
   }
 }
+
 @import "./fonts.scss";
+
+// -->> PAGES
+
+@import "./index.scss";
+
+// <<-- END PAGES
+
+// -->> COMPONENTS
+
 @import "./Nav";
 @import "./Layout";
-@import "./index.scss";
+@import "./Footer";
+@import "./Contact";
