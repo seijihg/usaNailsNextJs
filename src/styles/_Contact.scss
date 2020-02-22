@@ -46,4 +46,19 @@
       height: 10rem;
     }
   }
+  form {
+    button {
+      padding: 0.8rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 250ms;
+      color: $pink-dark-colour;
+
+      &:hover {
+        background: $pink-colour;
+        color: $offwhite-colour;
+        transition: all 250ms;
+      }
+    }
+  }
 }

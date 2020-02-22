@@ -1,10 +1,28 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useState, FormEvent } from "react";
 import TextareaAutosize from "react-textarea-autosize";
+import { sendEmail } from "src/lib/api";
+
+const contactForm7 =
+  "https://usanails.uk.cloudlogin.co/wp-json/contact-form-7/v1/contact-forms/49/feedback";
 
 const Contact: FunctionComponent = () => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [emailContent, setEmailContent] = useState<string>("");
+
+  const emailSubmitHandler = (e: FormEvent) => {
+    e.preventDefault();
+    let data = new FormData();
+    data.append("your-name", name);
+    data.append("your-email", email);
+    data.append("your-message", emailContent);
+
+    sendEmail(data).then(console.log);
+
+    setEmailContent("");
+    setName("");
+    setEmail("");
+  };
   return (
     <>
       <h1>CONTACT US</h1>
@@ -37,7 +55,7 @@ const Contact: FunctionComponent = () => {
           </div>
           <div className="image"></div>
         </div>
-        <form>
+        <form onSubmit={emailSubmitHandler}>
           <input
             placeholder="Enter Name"
             value={name}
@@ -53,7 +71,7 @@ const Contact: FunctionComponent = () => {
             onChange={(e) => setEmailContent(e.target.value)}
             minRows={10}
             maxRows={15}
-            defaultValue={emailContent}
+            value={emailContent}
             placeholder="Enter Message"
           />
           <button>SEND MESSAGE</button>

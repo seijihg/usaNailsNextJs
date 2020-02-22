@@ -1,9 +1,10 @@
-import { NextPage, NextPageContext } from "next";
+import { NextPage } from "next";
 import Layout from "src/components/Layout";
 import News from "src/components/news/News";
 import Blogs from "src/components/blogs/Blogs";
 import Prices from "src/components/price_list/Prices";
 import Contact from "src/components/Contact";
+import ImageSlidesAtIndex from "src/components/ImageSlidesAtIndex";
 
 const Index: NextPage = () => {
   console.log(
@@ -23,7 +24,7 @@ const Index: NextPage = () => {
           </div>
         </div>
         <div className="index-img-interior">
-          <div className="index-img-interior-child"></div>
+          <ImageSlidesAtIndex />
         </div>
         <div className="index-img-shop1"></div>
         <div className="index-welcome-brief">

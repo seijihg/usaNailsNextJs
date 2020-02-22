@@ -15,7 +15,7 @@ interface IBlogProps {
 }
 const Blog: FunctionComponent<IBlogProps> = ({ blog }) => {
   const { title, content, date, author } = blog;
-  console.log(author);
+
   return (
     <div>
       <h1>{ReactHtmlParser(title)}</h1>

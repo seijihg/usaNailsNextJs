@@ -7,13 +7,14 @@ const getNewsQuery = gql`
   query($id: ID!) {
     category(id: $id) {
       name
+      id
       posts {
         edges {
           node {
             id
             title
-            date
             content
+            date
           }
         }
       }
@@ -27,13 +28,13 @@ const News: FunctionComponent = () => {
   });
   const [news, setNews] = useState([]);
   useEffect(() => {
-    setNews(newsData.category.posts.edges.slice(0, 5));
+    setNews(newsData?.category.posts.edges.slice(0, 5));
   }, [newsData]);
 
   return (
     <>
       <h1 className="latest-news">LATEST NEWS</h1>
-      {news.map((elem: any) => {
+      {news?.map((elem: any) => {
         return <New key={elem.node.id} newsList={elem.node} />;
       })}
     </>
