@@ -1,0 +1,29 @@
+.index-img-interior {
+  overflow: hidden;
+  position: relative;
+
+  .previous,
+  .next {
+    position: absolute;
+    padding: 0.5rem 0.75rem;
+    background: $offwhite-colour;
+    top: 20vh;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  .next {
+    right: 0;
+  }
+
+  .index-img-interior-child {
+    width: 100%;
+    height: 600px;
+    background-size: cover;
+    background-position: center;
+    transition: 1s;
+  }
+  .index-img-interior-child:hover {
+    transform: scale(1.2);
+  }
+}

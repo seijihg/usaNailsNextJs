@@ -21,7 +21,7 @@ interface Options {
 
 function create(initialState: any, { getToken }: Options) {
   const httpLink = createHttpLink({
-    uri: "http://usanails.uk.cloudlogin.co/graphql",
+    uri: "https://usanails.uk.cloudlogin.co/graphql",
     headers: {
       "Content-Type": "application/json"
     },

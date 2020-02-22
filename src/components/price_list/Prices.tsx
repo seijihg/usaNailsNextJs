@@ -21,8 +21,9 @@ export const getCategoriesQuery = gql`
                     node {
                       id
                       title
-                      Price {
+                      service {
                         price
+                        serviceName
                       }
                     }
                   }
@@ -48,13 +49,13 @@ const Prices: FunctionComponent = () => {
   const [mainCats, setMainCats] = useState([]);
 
   useEffect(() => {
-    setMainCats(priceCategories.category.children.nodes);
+    setMainCats(priceCategories?.category.children.nodes);
   }, [priceCategories]);
 
   return (
     <>
       <h1>PRICE LIST</h1>
-      {mainCats.map((cat: any) => {
+      {mainCats?.map((cat: any) => {
         return <Category key={cat.id} category={cat} />;
       })}
     </>
