@@ -5,6 +5,7 @@ import Blogs from "src/components/blogs/Blogs";
 import Prices from "src/components/price_list/Prices";
 import Contact from "src/components/Contact";
 import ImageSlidesAtIndex from "src/components/ImageSlidesAtIndex";
+import { ReactSVG } from "react-svg";
 
 const Index: NextPage = () => {
   console.log(
@@ -80,10 +81,10 @@ const Index: NextPage = () => {
         </div>
         <div className="index-img-shop3"></div>
         <div className="index-img-shop4"></div>
-        <div className="index-price-list">
+        <div id="section-1" className="index-price-list">
           <Prices />
         </div>
-        <div className="about-us">
+        <div id="section-2" className="about-us">
           <h1>ABOUT US</h1>
           <p>
             Visiting us, you will receive a complimentary drink to make you
@@ -96,12 +97,22 @@ const Index: NextPage = () => {
         </div>
         <div className="reviews">
           <p>
-            Our spa offers a built- in ventilation system to bring you fresh
-            air, comfort and protection. Your safety and well-being are our top
-            priorities
+            Excellent. My wife and daughter always go here to have their nails
+            done. Always pleased with results. On this occasion they talked me
+            into having a pedicure..not for men I thought, but what the heck
+            better than sitting in the car. All I can say is I can't remember my
+            feet looking and feeling so good 😁
           </p>
+          <h2>Peter Brady</h2>
+          <div className="ratings">
+            <ReactSVG src="/assets/svg/star.svg" />
+            <ReactSVG src="/assets/svg/star.svg" />
+            <ReactSVG src="/assets/svg/star.svg" />
+            <ReactSVG src="/assets/svg/star.svg" />
+            <ReactSVG src="/assets/svg/star.svg" />
+          </div>
         </div>
-        <div className="index-contact">
+        <div id="section-3" className="index-contact">
           <Contact />
         </div>
       </div>

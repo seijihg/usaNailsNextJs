@@ -6,7 +6,7 @@ const Layout: FunctionComponent = ({ children }) => {
   return (
     <div className="layout-top">
       <Nav />
-      <div>{children}</div>
+      {children}
       <Footer />
     </div>
   );
