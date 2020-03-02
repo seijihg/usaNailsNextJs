@@ -1,11 +1,13 @@
 import { FunctionComponent } from "react";
 
 interface IServiceProps {
-  service: any;
+  title: string;
+  price: number;
+  serviceName: string;
+  id: string;
 }
 
-const Service: FunctionComponent<IServiceProps> = ({ service }) => {
-  const { serviceName, price } = service.service;
+const Service: FunctionComponent<IServiceProps> = ({ serviceName, price }) => {
   return (
     <li>
       <h3>{serviceName}</h3>

@@ -16,16 +16,12 @@ export const getCategoriesQuery = gql`
               node {
                 id
                 name
-                posts {
-                  edges {
-                    node {
-                      id
-                      title
-                      service {
-                        price
-                        serviceName
-                      }
-                    }
+                prices {
+                  nodes {
+                    title
+                    price
+                    serviceName
+                    id
                   }
                 }
               }

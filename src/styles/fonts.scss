@@ -1,4 +1,4 @@
-$base-font-url: "/assets/img/fonts/";
+$base-font-url: "/assets/fonts/";
 
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 
@@ -6,17 +6,16 @@ $base-font-url: "/assets/img/fonts/";
   font-family: "Alice";
   font-style: normal;
   font-display: swap;
-  src: url(#{$base-font-url}Alice-Regular.ttf) format(ttf);
+  src: url(#{$base-font-url}Alice-Regular.ttf);
 }
 @font-face {
   font-family: "Font-Awesome";
   font-style: normal;
   font-display: swap;
-  src: url(#{$base-font-url}fontawesome-webfont.woff) format(woff);
+  src: url(#{$base-font-url}fontawesome-webfont.woff);
 }
 
 @font-face {
   font-family: "Helvetica Neue";
-  src: url(https://res.cloudinary.com/seijihg/raw/upload/v1567937360/lady_bug_air/fonts/helveticaneue/HelveticaNeueMed_grmzjq.ttf)
-    format(ttf);
+  src: url(https://res.cloudinary.com/seijihg/raw/upload/v1567937360/lady_bug_air/fonts/helveticaneue/HelveticaNeueMed_grmzjq.ttf);
 }

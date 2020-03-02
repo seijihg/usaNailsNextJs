@@ -11,6 +11,7 @@ $maxWidth: 1200px;
   margin: 0;
   padding: 0;
 }
+
 body {
   height: 100%;
   font-family: "Open Sans", sans-serif;
@@ -21,6 +22,12 @@ body {
     font-size: 0.85em;
     color: $dark-gray-colour;
   }
+
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
   h1,
   h2,
   h3,
@@ -40,6 +47,16 @@ body {
   }
   h4 {
     font-size: 0.7em;
+  }
+
+  .button {
+    transition: color 250ms;
+    cursor: pointer;
+
+    &:hover {
+      color: $pink-colour;
+      transition: color 250ms;
+    }
   }
 }
 

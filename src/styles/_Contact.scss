@@ -34,8 +34,13 @@
       }
     }
     .social {
-      img {
-        margin-right: 2rem;
+      div {
+        display: flex;
+        justify-content: center;
+
+        img {
+          margin: 0 1rem;
+        }
       }
     }
     .image {
@@ -59,6 +64,20 @@
         color: $offwhite-colour;
         transition: all 250ms;
       }
+    }
+  }
+  @media (max-width: 576px) {
+    text-align: center;
+
+    .contact-left-column {
+      display: block;
+      div {
+        margin: 1rem 0;
+      }
+    }
+
+    .contact {
+      display: block;
     }
   }
 }
