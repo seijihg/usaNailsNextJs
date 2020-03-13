@@ -1,0 +1,55 @@
+@function set-border-colour($color) {
+  @if (lightness($color) > 50) {
+    @return $pink-dark-colour;
+  } @else {
+    @return $offwhite-colour;
+  }
+}
+
+.sub-page-news,
+.sub-page-blogs {
+  .left-column {
+    padding: 1rem;
+    width: 70%;
+    background: $gray-colour;
+
+    h4 {
+      margin-bottom: 2rem;
+      color: $pink-colour;
+    }
+    .new-content {
+      margin-bottom: 2rem;
+    }
+  }
+  .right-column {
+    padding: 1rem;
+    background: $pink-dark-colour;
+    width: 30%;
+    margin-left: 2rem;
+    color: $offwhite-colour;
+
+    h3 {
+      color: $pink-colour;
+    }
+
+    li {
+      list-style: none;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .left-h1,
+  .right-h1 {
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .left-h1 {
+    border-color: set-border-colour($gray-colour);
+  }
+  .right-h1 {
+    border-color: set-border-colour($pink-dark-colour);
+  }
+}

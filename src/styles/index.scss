@@ -326,3 +326,10 @@
     background: $pink-dark-colour;
   }
 }
+
+.sub-page-news,
+.sub-page-blogs {
+  margin: auto;
+  max-width: $maxWidth;
+  display: flex;
+}

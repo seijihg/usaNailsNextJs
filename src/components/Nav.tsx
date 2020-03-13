@@ -1,9 +1,14 @@
 import { FunctionComponent, useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Nav: FunctionComponent = (props) => {
   const [smallScreen, setSmallScreen] = useState<boolean>(false);
   const [nav, setNav] = useState<boolean>(false);
+
+  const router = useRouter();
+
+  console.log(router.pathname);
 
   useEffect(() => {
     setSmallScreen(window.innerWidth < 576 ? true : false);
@@ -46,17 +51,31 @@ const Nav: FunctionComponent = (props) => {
               <a>HOME</a>
             </Link>
           </li>
-          <li className="button">NEWS</li>
-          <li className="button">BLOGS</li>
-          <li className="button" onClick={() => goToSection(1)}>
-            PRICE LIST
+          <li className="button">
+            <Link href="/news">
+              <a>NEWS</a>
+            </Link>
           </li>
-          <li className="button" onClick={() => goToSection(2)}>
-            ABOUT
+          <li className="button">
+            <Link href="/blogs">
+              <a>BLOGS</a>
+            </Link>
           </li>
-          <li className="button" onClick={() => goToSection(3)}>
-            CONTACT
-          </li>
+          {router.pathname === "/" ? (
+            <>
+              <li className="button" onClick={() => goToSection(1)}>
+                PRICE LIST
+              </li>
+              <li className="button" onClick={() => goToSection(2)}>
+                ABOUT
+              </li>
+              <li className="button" onClick={() => goToSection(3)}>
+                CONTACT
+              </li>
+            </>
+          ) : (
+            ""
+          )}
         </ul>
       </div>
     </>
