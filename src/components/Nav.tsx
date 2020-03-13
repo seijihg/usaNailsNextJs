@@ -2,7 +2,7 @@ import { FunctionComponent, useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const Nav: FunctionComponent = (props) => {
+const Nav: FunctionComponent = () => {
   const [smallScreen, setSmallScreen] = useState<boolean>(false);
   const [nav, setNav] = useState<boolean>(false);
 

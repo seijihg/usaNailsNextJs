@@ -8,9 +8,11 @@
 
 .sub-page-news,
 .sub-page-blogs {
+  position: relative;
+
   .left-column {
     padding: 1rem;
-    width: 70%;
+    flex: 3;
     background: $gray-colour;
 
     h4 {
@@ -24,9 +26,9 @@
   .right-column {
     padding: 1rem;
     background: $pink-dark-colour;
-    width: 30%;
     margin-left: 2rem;
     color: $offwhite-colour;
+    flex: 1;
 
     h3 {
       color: $pink-colour;
@@ -51,5 +53,12 @@
   }
   .right-h1 {
     border-color: set-border-colour($pink-dark-colour);
+  }
+
+  @media (max-width: 576px) {
+    .right-column {
+      position: absolute;
+      visibility: hidden;
+    }
   }
 }
