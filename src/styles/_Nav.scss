@@ -13,7 +13,8 @@
   position: relative;
 
   .index-logo {
-    width: 15%;
+    width: 231px;
+    height: 96px;
   }
   .nav-bar {
     color: $pink-dark-colour;
@@ -59,10 +60,6 @@
       li {
         margin-top: 1rem;
       }
-    }
-
-    .index-logo {
-      width: 60%;
     }
   }
 }

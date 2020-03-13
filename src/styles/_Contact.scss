@@ -52,12 +52,18 @@
     }
   }
   form {
+    input,
+    textarea {
+      font-family: Alice;
+      font-size: 0.75em;
+    }
     button {
       padding: 0.8rem;
       border-radius: 5px;
       cursor: pointer;
       transition: all 250ms;
       color: $pink-dark-colour;
+      border-style: none;
 
       &:hover {
         background: $pink-colour;
