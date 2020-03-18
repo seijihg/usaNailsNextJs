@@ -2,6 +2,7 @@ import { FunctionComponent } from "react";
 import { dateToReadableTextDate } from "src/lib/functions";
 import ReactHtmlParser from "react-html-parser";
 import Link from "next/link";
+import newsAndBlogs from "pages/news_blogs/[slug]";
 
 interface INewProps {
   newsList: any;
@@ -27,7 +28,9 @@ const New: FunctionComponent<INewProps> = ({ newsList, fullVersion }) => {
       {fullVersion
         ? ""
         : newsList.content.length > 300 && (
-            <p className="read-more">...read more</p>
+            <Link href={`/news_blogs/${newsList.slug}`}>
+              <a className="read-more">... read more</a>
+            </Link>
           )}
     </>
   );

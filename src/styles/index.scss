@@ -196,6 +196,8 @@
       justify-content: flex-end;
       cursor: pointer;
       transition: color 250ms;
+      font-size: 0.85em;
+      color: $dark-gray-colour;
 
       &:hover {
         color: $pink-colour;
