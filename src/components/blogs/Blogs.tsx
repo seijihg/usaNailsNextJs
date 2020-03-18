@@ -9,6 +9,7 @@ interface IBlogs {
     title: string;
     content: string;
     date: Date;
+    slug: string;
     author: {
       name: string;
       id: string;
@@ -27,6 +28,7 @@ const getBlogsQuery = gql`
             title
             content
             id
+            slug
             author {
               name
               id

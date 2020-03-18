@@ -31,11 +31,15 @@ const Nav: FunctionComponent = () => {
   return (
     <>
       <div className="nav-main">
-        <img
-          className="index-logo"
-          src="/assets/img/usanails_logo.png"
-          alt="usa nails logo"
-        />
+        <Link href="/">
+          <a>
+            <img
+              className="index-logo"
+              src="/assets/img/usanails_logo.png"
+              alt="usa nails logo"
+            />
+          </a>
+        </Link>
         {smallScreen && (
           <img
             onClick={() => setNav(!nav)}
