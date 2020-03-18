@@ -8,8 +8,6 @@ const Nav: FunctionComponent = () => {
 
   const router = useRouter();
 
-  console.log(router.pathname);
-
   useEffect(() => {
     setSmallScreen(window.innerWidth < 576 ? true : false);
     window.addEventListener("resize", handleResize);

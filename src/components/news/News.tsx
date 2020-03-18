@@ -15,6 +15,7 @@ const getNewsQuery = gql`
             title
             content
             date
+            slug
           }
         }
       }
