@@ -29,7 +29,12 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query }) => {
 
   return (
     <Layout>
-      <div className={"main-new-blog-page " + (loading ? "loader" : "")}>
+      <div
+        className={
+          "main-new-blog-page news-and-blogs-wp-format" +
+          (loading ? "loader" : "")
+        }
+      >
         {loading ? (
           <div className="lds-ring">
             <div></div>

@@ -12,9 +12,11 @@ const NewsBlogs: FunctionComponent<IDataProps> = ({ data, type }) => {
     <>
       <div className="left-column">
         <h1 className="left-h1">{type} List</h1>
-        {data?.map((elem: any) => {
-          return <New key={elem.id} newsList={elem} fullVersion={true} />;
-        })}
+        <div className="news-and-blogs-wp-format">
+          {data?.map((elem: any) => {
+            return <New key={elem.id} newsList={elem} fullVersion={true} />;
+          })}
+        </div>
       </div>
 
       <div className="right-column">
