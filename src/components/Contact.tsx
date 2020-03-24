@@ -2,9 +2,6 @@ import { FunctionComponent, useState, FormEvent } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { sendEmail } from "src/lib/api";
 
-const contactForm7 =
-  "https://usanails.uk.cloudlogin.co/wp-json/contact-form-7/v1/contact-forms/49/feedback";
-
 const Contact: FunctionComponent = () => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");

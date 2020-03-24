@@ -1,8 +1,8 @@
-import Layout from "src/components/Layout";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import { useState, useEffect } from "react";
 import NewsBlogs from "src/components/news_blogs_pages/NewsBlogs";
+import LoadingIndicator from "src/components/LoadingIndicator";
 
 const getBlogsQuery = gql`
   query($id: ID!) {
@@ -33,11 +33,9 @@ const News = () => {
   }, [blogsData]);
 
   return (
-    <Layout>
-      <div className="sub-page-blogs">
-        <NewsBlogs data={blogs} type="Blogs" />
-      </div>
-    </Layout>
+    <div className="sub-page-blogs">
+      {loading ? <LoadingIndicator /> : <NewsBlogs data={blogs} type="Blogs" />}
+    </div>
   );
 };
 

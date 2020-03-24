@@ -36,7 +36,11 @@
     .social {
       div {
         display: flex;
-        justify-content: center;
+        justify-content: left;
+
+        @media (max-width: 576px) {
+          justify-content: center;
+        }
 
         img {
           margin: 0 1rem;
