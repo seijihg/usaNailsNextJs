@@ -8,6 +8,12 @@ import { createHttpLink } from "apollo-link-http";
 import fetch from "isomorphic-unfetch";
 import { isBrowser } from "./isBrowser";
 
+import { IntrospectionFragmentMatcher } from "apollo-cache-inmemory";
+import introspectionQueryResultData from "../../src/fragmentTypes.json";
+const fragmentMatcher = new IntrospectionFragmentMatcher({
+  introspectionQueryResultData
+});
+
 let apolloClient: ApolloClient<NormalizedCacheObject> | null = null;
 
 // Polyfill fetch() on the server (used by apollo-client)
@@ -39,7 +45,7 @@ function create(initialState: any, { getToken }: Options) {
     connectToDevTools: isBrowser,
     ssrMode: !isBrowser, // Disables forceFetch on the server (so queries are only run once)
     link: authLink.concat(httpLink),
-    cache: new InMemoryCache().restore(initialState || {})
+    cache: new InMemoryCache({ fragmentMatcher }).restore(initialState || {})
   });
 }
 

@@ -1,5 +1,4 @@
 import { NextPage } from "next";
-import Layout from "src/components/Layout";
 import News from "src/components/news/News";
 import Blogs from "src/components/blogs/Blogs";
 import Prices from "src/components/price_list/Prices";
@@ -12,7 +11,7 @@ const Index: NextPage = () => {
     "Welcome to USA Nails Dev Window. If you have any questions please contact our technical department."
   );
   return (
-    <Layout>
+    <>
       <div className="index-main">
         <div className="index-img-voucher"></div>
         <div className="index-opening-time">
@@ -116,7 +115,7 @@ const Index: NextPage = () => {
           <Contact />
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 

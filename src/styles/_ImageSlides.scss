@@ -21,7 +21,8 @@
     height: 600px;
     background-size: cover;
     background-position: center;
-    transition: 500ms;
+    transition: all 100ms;
+    transition: transform 500ms;
   }
   .index-img-interior-child:hover {
     transform: scale(1.2);

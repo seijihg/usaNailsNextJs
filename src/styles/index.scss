@@ -127,6 +127,7 @@
     h1,
     p {
       margin-bottom: 1.5rem;
+      color: $pink-colour;
     }
     div {
       vertical-align: middle;
@@ -152,6 +153,10 @@
     }
     h1 {
       margin-bottom: 1rem;
+    }
+
+    p {
+      color: $pink-colour;
     }
   }
   .index-call-appointment {
