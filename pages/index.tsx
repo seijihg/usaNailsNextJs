@@ -5,6 +5,7 @@ import Prices from "src/components/price_list/Prices";
 import Contact from "src/components/Contact";
 import ImageSlidesAtIndex from "src/components/ImageSlidesAtIndex";
 import { ReactSVG } from "react-svg";
+import Link from "next/link";
 
 const Index: NextPage = () => {
   console.log(
@@ -38,11 +39,20 @@ const Index: NextPage = () => {
         <div className="index-img-shop2"></div>
         <div className="index-follow-us">
           <h1>FOLLOW US ON</h1>
-          <div>
-            <img src="/assets/img/icons/facebook.png" alt="fb icon" />
-            <img src="/assets/img/icons/google.png" alt="google icon" />
-            <img src="/assets/img/icons/twitter.png" alt="twitter icon" />
-            <img src="/assets/img/icons/rss.png" alt="rss icon" />
+          <div className="icons">
+            <Link href="//www.facebook.com/usanailsberkhamstead">
+              <a>
+                <img src="/assets/img/icons/facebook.png" alt="fb icon" />
+              </a>
+            </Link>
+            <Link href="//www.instagram.com/usa_nails_berkhamsted/">
+              <a>
+                <img
+                  src="/assets/img/icons/instagram.png"
+                  alt="instagram icon"
+                />
+              </a>
+            </Link>
           </div>
           <h1>ADDRESS</h1>
           <p>5 The Hall Walk, London Rd</p> <p>Berkhamsted HP4 2BU</p>

@@ -158,6 +158,10 @@
     p {
       color: $pink-colour;
     }
+
+    img {
+      filter: invert(1);
+    }
   }
   .index-call-appointment {
     padding: 5rem 0;
