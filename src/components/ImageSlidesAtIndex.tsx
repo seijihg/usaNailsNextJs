@@ -2,10 +2,7 @@ import { useState } from "react";
 
 const ImageSlidesAtIndex = () => {
   const [images, setImages] = useState<string[]>([
-    "/assets/img/interior/img-interior-slide-01.jpg",
     "/assets/img/interior/img-interior-slide-02.jpg",
-    "/assets/img/interior/img-interior-slide-03.jpg",
-    "/assets/img/interior/img-interior-slide-04.jpg",
     "/assets/img/interior/img-interior-slide-05.jpg",
     "/assets/img/interior/img-interior-slide-06.jpg"
   ]);
@@ -31,7 +28,7 @@ const ImageSlidesAtIndex = () => {
       <div
         className="next"
         onClick={() =>
-          counter === 5 ? setCounter(0) : setCounter(counter + 1)
+          counter === 2 ? setCounter(0) : setCounter(counter + 1)
         }
       >
         {" "}
