@@ -5,7 +5,7 @@ const Footer: FunctionComponent = (props) => {
     <>
       <div className="footer">
         <div className="footer-inner">
-          <img src="/assets/img/usanails_logo.png" alt="usa nails logo" />
+          <img src="/assets/img/usanails_logo_ver2.png" alt="usa nails logo" />
           <p>© usa-nails.co.uk subject to terms and conditions</p>
         </div>
       </div>
