@@ -1,6 +1,7 @@
 import { FunctionComponent, useState, FormEvent } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { sendEmail } from "src/lib/api";
+import Link from "next/link";
 
 const Contact: FunctionComponent = () => {
   const [name, setName] = useState<string>("");
@@ -14,7 +15,7 @@ const Contact: FunctionComponent = () => {
     data.append("your-email", email);
     data.append("your-message", emailContent);
 
-    sendEmail(data).then(console.log);
+    sendEmail(data);
 
     setEmailContent("");
     setName("");
@@ -44,10 +45,19 @@ const Contact: FunctionComponent = () => {
           <div className="social">
             <h2>SOCIAL</h2>
             <div>
-              <img src="/assets/img/icons/facebook.png" alt="fb icon" />
-              <img src="/assets/img/icons/google.png" alt="google icon" />
-              <img src="/assets/img/icons/twitter.png" alt="twitter icon" />
-              <img src="/assets/img/icons/rss.png" alt="rss icon" />
+              <Link href="//www.facebook.com/usanailsberkhamstead">
+                <a>
+                  <img src="/assets/img/icons/facebook.png" alt="fb icon" />
+                </a>
+              </Link>
+              <Link href="//www.instagram.com/usa_nails_berkhamsted/">
+                <a>
+                  <img
+                    src="/assets/img/icons/instagram.png"
+                    alt="instagram icon"
+                  />
+                </a>
+              </Link>
             </div>
           </div>
           <div className="image"></div>

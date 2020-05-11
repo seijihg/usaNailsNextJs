@@ -16,7 +16,7 @@ const New: FunctionComponent<INewProps> = ({ newsList, fullVersion }) => {
 
   return (
     <>
-      <Link href={`/news_blogs/${newsList.slug}`}>
+      <Link href="/news_blogs/[slug]" as={`/news_blogs/${newsList.slug}`}>
         <a>
           <h1>{ReactHtmlParser(newsList.title)}</h1>
         </a>
@@ -26,7 +26,7 @@ const New: FunctionComponent<INewProps> = ({ newsList, fullVersion }) => {
       {fullVersion
         ? ""
         : newsList.content.length > 300 && (
-            <Link href={`/news_blogs/${newsList.slug}`}>
+            <Link href="/news_blogs/[slug]" as={`/news_blogs/${newsList.slug}`}>
               <a className="read-more">... read more</a>
             </Link>
           )}
