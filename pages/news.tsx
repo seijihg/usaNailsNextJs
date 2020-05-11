@@ -2,7 +2,6 @@ import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import { useState, useEffect } from "react";
 import NewsBlogs from "src/components/news_blogs_pages/NewsBlogs";
-import LoadingIndicator from "src/components/LoadingIndicator";
 
 const getNewsQuery = gql`
   query($id: ID!) {
