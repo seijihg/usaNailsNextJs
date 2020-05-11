@@ -51,6 +51,7 @@ body {
   border: 4px solid transparent;
   position: relative;
   padding: 1px;
+  height: fit-content;
 }
 .loader:before {
   content: "";
