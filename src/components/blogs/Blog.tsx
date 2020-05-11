@@ -20,7 +20,7 @@ const Blog: FunctionComponent<IBlogProps> = ({ blog }) => {
 
   return (
     <div>
-      <Link href={`/news_blogs/${slug}`}>
+      <Link href="/news_blogs/[slug]" as={`/news_blogs/${slug}`}>
         <a>
           <h1>{ReactHtmlParser(title)}</h1>
         </a>

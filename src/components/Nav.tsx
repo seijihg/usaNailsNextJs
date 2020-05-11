@@ -24,7 +24,7 @@ const Nav: FunctionComponent = () => {
     const sectionID: any = document.getElementById(`section-${index}`);
     sectionID.scrollIntoView({
       behavior: "smooth",
-      block: "center"
+      block: "center",
     });
   };
 
@@ -44,7 +44,7 @@ const Nav: FunctionComponent = () => {
           <img
             onClick={() => setNav(!nav)}
             className="index-menu"
-            src="assets/img/icons/menu_icon.png"
+            src="/assets/img/icons/menu_icon.png"
           ></img>
         )}
         <ul className={"nav-bar " + (nav ? "nav-bar-anim1" : "nav-bar-anim2")}>

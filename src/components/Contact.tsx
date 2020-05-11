@@ -15,7 +15,7 @@ const Contact: FunctionComponent = () => {
     data.append("your-email", email);
     data.append("your-message", emailContent);
 
-    sendEmail(data).then(console.log);
+    sendEmail(data);
 
     setEmailContent("");
     setName("");

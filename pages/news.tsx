@@ -36,7 +36,7 @@ const getNewsQuery = gql`
 
 const News = () => {
   const { loading, error, data: newsData } = useQuery(getNewsQuery, {
-    variables: { id: "Y2F0ZWdvcnk6Mg==" }
+    variables: { id: "Y2F0ZWdvcnk6Mg==" },
   });
   const [news, setNews] = useState([]);
 
@@ -46,7 +46,13 @@ const News = () => {
 
   return (
     <div className="sub-page-news">
-      {loading ? <LoadingIndicator /> : <NewsBlogs data={news} type="News" />}
+      {loading ? (
+        <div className="loader">
+          <div className="loaderBar"></div>
+        </div>
+      ) : (
+        <NewsBlogs data={news} type="News" />
+      )}
     </div>
   );
 };

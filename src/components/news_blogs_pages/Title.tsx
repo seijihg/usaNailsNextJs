@@ -13,7 +13,7 @@ const NewTitle: FunctionComponent<INewTitleProps> = ({ title, slug, date }) => {
     <>
       <li>
         <h3>{dateToReadableTextDate(date.toString())}</h3>
-        <Link href={`/news_blogs/${slug}`}>
+        <Link href="/news_blogs/[slug]" as={`/news_blogs/${slug}`}>
           <a>{title}</a>
         </Link>
       </li>

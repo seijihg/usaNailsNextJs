@@ -25,14 +25,16 @@ interface INewsAndBlogsProps {
 }
 
 const validationSchema = Yup.object({
-  comment: Yup.string().required()
+  comment: Yup.string().required(),
 });
 
-const MyCommentField: FunctionComponent<FieldConfig & {
-  placeholder: string;
-  minRows: number;
-  maxRows: number;
-}> = ({ placeholder, minRows, maxRows, ...props }) => {
+const MyCommentField: FunctionComponent<
+  FieldConfig & {
+    placeholder: string;
+    minRows: number;
+    maxRows: number;
+  }
+> = ({ placeholder, minRows, maxRows, ...props }) => {
   const [field, meta] = useField(props);
   const errorText = meta.error && meta.touched ? meta.error : "";
   return (
@@ -50,28 +52,25 @@ const MyCommentField: FunctionComponent<FieldConfig & {
 
 const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query }) => {
   const { loading, error, data } = useQuery(newOrBlogQuery, {
-    variables: { id: query.slug }
+    variables: { id: query.slug },
   });
   const { post } = data || {};
   const { title, date, content } = post || {};
 
   return (
     <>
-      <div
-        className={
-          "main-new-blog-page news-and-blogs-wp-format" +
-          (loading ? "loader" : "")
-        }
-      >
+      <div className={"main-new-blog-page news-and-blogs-wp-format"}>
         {loading ? (
-          <LoadingIndicator />
+          <div className="loader">
+            <div className="loaderBar"></div>
+          </div>
         ) : (
           <>
             <h3>{dateToReadableTextDate(date?.toString())}</h3>
             <h1>{ReactHtmlParser(title)}</h1>
             <div className="new-content">{ReactHtmlParser(content)}</div>
-            <h2>Comments:</h2>
-            <Formik
+            {/* <h2>Comments:</h2> */}
+            {/* <Formik
               initialValues={{ comment: "" }}
               onSubmit={(data, { setSubmitting }) => {
                 setSubmitting(true);
@@ -94,12 +93,10 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query }) => {
                     <button disabled={isSubmitting} type="submit">
                       SUBMIT
                     </button>
-                    {/* <pre>{JSON.stringify(values, null, 2)}</pre>
-              <pre>{JSON.stringify(errors, null, 2)}</pre> */}
                   </Form>
                 );
               }}
-            </Formik>
+            </Formik> */}
           </>
         )}
       </div>
