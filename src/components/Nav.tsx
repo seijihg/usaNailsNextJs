@@ -35,7 +35,7 @@ const Nav: FunctionComponent = () => {
           <a>
             <img
               className="index-logo"
-              src="/assets/img/usanails_logo.png"
+              src="/assets/img/usanails_logo_ver2.png"
               alt="usa nails logo"
             />
           </a>
