@@ -1,10 +1,15 @@
-import { FunctionComponent, useState, useEffect } from "react";
+import { FunctionComponent, useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Login from "./auth/Login";
+import { UserContext } from "src/lib/UserContext";
 
 const Nav: FunctionComponent = () => {
   const [smallScreen, setSmallScreen] = useState<boolean>(false);
   const [nav, setNav] = useState<boolean>(false);
+  const [quickLogin, setQuickLogin] = useState<boolean>(false);
+
+  const { user, setUser } = useContext<any>(UserContext);
 
   const router = useRouter();
 
@@ -78,7 +83,11 @@ const Nav: FunctionComponent = () => {
           ) : (
             ""
           )}
+          <li className="button" onClick={() => setQuickLogin(!quickLogin)}>
+            LOGIN
+          </li>
         </ul>
+        {user ? user.email : <Login />}
       </div>
     </>
   );

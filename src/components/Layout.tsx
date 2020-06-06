@@ -1,9 +1,9 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import Head from "next/head";
 
-const Layout: FunctionComponent = ({ children }) => {
+const Layout: FC = ({ children }) => {
   return (
     <div className="layout-top">
       <Head>
