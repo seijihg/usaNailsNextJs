@@ -7,9 +7,10 @@ import { UserContext } from "src/lib/UserContext";
 const Nav: FunctionComponent = () => {
   const [smallScreen, setSmallScreen] = useState<boolean>(false);
   const [nav, setNav] = useState<boolean>(false);
-  const [quickLogin, setQuickLogin] = useState<boolean>(false);
 
-  const { user, setUser } = useContext<any>(UserContext);
+  const { user, setUser, quickLogin, setQuickLogin } = useContext<any>(
+    UserContext
+  );
 
   const router = useRouter();
 
@@ -83,11 +84,14 @@ const Nav: FunctionComponent = () => {
           ) : (
             ""
           )}
-          <li className="button" onClick={() => setQuickLogin(!quickLogin)}>
-            LOGIN
-          </li>
+          {user ? (
+            <li className="button">{user.email}</li>
+          ) : (
+            <li className="button" onClick={() => setQuickLogin(!quickLogin)}>
+              LOGIN
+            </li>
+          )}
         </ul>
-        {user ? user.email : <Login />}
       </div>
     </>
   );

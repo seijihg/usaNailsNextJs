@@ -32,6 +32,23 @@ export const signup = async (data: ReadableStream) => {
   return user;
 };
 
+// Login API
+
+const loginEP = "http://localhost:8080/api_v1/login";
+
+export const login = async (data: ReadableStream) => {
+  const res = await fetch(loginEP, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  const user = await res.json();
+  return user;
+};
+
 // Get a user API
 
 const userEP = "http://localhost:8080/api_v1/user/get-me";
