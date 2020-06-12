@@ -20,6 +20,8 @@
     margin: 0 auto;
     padding: 2rem;
     background: $offwhite-colour;
+    height: max-content;
+    position: relative;
 
     .error-box,
     .error {
@@ -36,6 +38,23 @@
     }
     .input-field {
       margin-bottom: 1rem;
+    }
+
+    .svg-cross {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      cursor: pointer;
+    }
+
+    .remember-me {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+
+      div {
+        margin: auto 0;
+      }
     }
   }
 }

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Login from "./auth/Login";
 import { UserContext } from "src/lib/UserContext";
+import { ReactSVG } from "react-svg";
 
 const Nav: FunctionComponent = () => {
   const [smallScreen, setSmallScreen] = useState<boolean>(false);
@@ -87,9 +88,10 @@ const Nav: FunctionComponent = () => {
           {user ? (
             <li className="button">{user.email}</li>
           ) : (
-            <li className="button" onClick={() => setQuickLogin(!quickLogin)}>
-              LOGIN
-            </li>
+            <ReactSVG
+              src="/assets/svg/account-circle.svg"
+              onClick={() => setQuickLogin(!quickLogin)}
+            />
           )}
         </ul>
       </div>

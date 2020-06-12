@@ -7,6 +7,7 @@ import { UserContext } from "src/lib/UserContext";
 import { FormControlLabel, Checkbox } from "@material-ui/core";
 import clsx from "clsx";
 import { useStyles } from "src/styles/modules/useStyles";
+import { ReactSVG } from "react-svg";
 
 const validationSchema = Yup.object({
   email: Yup.string().email("Email is not valid").required("Email is required"),
@@ -20,7 +21,7 @@ const validationSchema = Yup.object({
 
 const Login = () => {
   const [apiErr, setApiErr] = useState<string>("");
-  const { user, setUser } = useContext<any>(UserContext);
+  const { setUser, setQuickLogin } = useContext<any>(UserContext);
   const classes = useStyles();
 
   return (
@@ -41,11 +42,17 @@ const Login = () => {
           actions.setSubmitting(false);
           actions.resetForm();
           Cookies.set("token", res.token);
+          setQuickLogin(false);
           setUser(res.user);
         }}
       >
         {({ values, errors, handleSubmit, isSubmitting, setFieldValue }) => (
           <Form onSubmit={handleSubmit}>
+            <ReactSVG
+              src="/assets/svg/window-close.svg"
+              className="svg-cross"
+              onClick={() => setQuickLogin(false)}
+            />
             <div>
               <h1>Good to see you again</h1>
               <p style={{ marginBottom: "1rem" }}>
@@ -63,31 +70,40 @@ const Login = () => {
               {errors.password && <p className="error">{errors.password}</p>}
             </div>
             <button disabled={isSubmitting} type="submit">
-              Login
+              <strong>LOGIN</strong>
             </button>
-            <FormControlLabel
-              checked={values.rememberMe}
-              onChange={() => {
-                setFieldValue("rememberMe", !values.rememberMe);
-              }}
-              control={
-                <Checkbox
-                  className={classes.root}
-                  disableRipple
-                  color="default"
-                  checkedIcon={
-                    <span className={clsx(classes.icon, classes.checkedIcon)} />
-                  }
-                  icon={<span className={classes.icon} />}
-                />
-              }
-              label={
-                <span style={{ fontFamily: `"Open Sans", sans-serif` }}>
-                  Remember me!
-                </span>
-              }
-            />
-            <div>Forgot password?</div>
+            <div className="remember-me">
+              <FormControlLabel
+                checked={values.rememberMe}
+                onChange={() => {
+                  setFieldValue("rememberMe", !values.rememberMe);
+                }}
+                control={
+                  <Checkbox
+                    className={classes.root}
+                    disableRipple
+                    color="default"
+                    checkedIcon={
+                      <span
+                        className={clsx(classes.icon, classes.checkedIcon)}
+                      />
+                    }
+                    icon={<span className={classes.icon} />}
+                  />
+                }
+                label={
+                  <span
+                    style={{
+                      fontFamily: `"Open Sans", sans-serif`,
+                      fontSize: ".75rem",
+                    }}
+                  >
+                    Remember me!
+                  </span>
+                }
+              />
+              <div>Forgot password?</div>
+            </div>
             {/* <pre>{JSON.stringify(values, null, 2)}</pre>
             <pre>{JSON.stringify(errors, null, 2)}</pre>
             <pre>{JSON.stringify(apiErr, null, 2)}</pre> */}
