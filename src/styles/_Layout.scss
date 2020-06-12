@@ -2,4 +2,59 @@
   margin: auto;
   background: $offwhite-colour;
   position: relative;
+
+  .login-signup {
+    padding-top: 20vh;
+    position: absolute;
+    background: #0a0a0a75;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+  }
+
+  form {
+    margin: 0 auto;
+    padding: 2rem;
+    background: $offwhite-colour;
+    height: max-content;
+    position: relative;
+
+    .error-box,
+    .error {
+      color: red;
+    }
+    .error-box {
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    input,
+    button {
+      width: 100%;
+    }
+    .input-field {
+      margin-bottom: 1rem;
+    }
+
+    .svg-cross {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      cursor: pointer;
+    }
+
+    .remember-me {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+
+      div {
+        margin: auto 0;
+      }
+    }
+  }
 }

@@ -3,7 +3,6 @@ import { gql } from "apollo-boost";
 import { useQuery } from "react-apollo";
 import ReactHtmlParser from "react-html-parser";
 import { dateToReadableTextDate } from "src/lib/functions";
-import LoadingIndicator from "../../src/components/LoadingIndicator";
 import { Formik, Form, useField, FieldConfig } from "formik";
 import TextareaAutosize from "react-textarea-autosize";
 import * as Yup from "yup";
@@ -69,13 +68,10 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query }) => {
             <h3>{dateToReadableTextDate(date?.toString())}</h3>
             <h1>{ReactHtmlParser(title)}</h1>
             <div className="new-content">{ReactHtmlParser(content)}</div>
-            {/* <h2>Comments:</h2> */}
-            {/* <Formik
+            <h2>Comments:</h2>
+            <Formik
               initialValues={{ comment: "" }}
               onSubmit={(data, { setSubmitting }) => {
-                setSubmitting(true);
-                console.log("submit", data);
-
                 setSubmitting(false);
               }}
               validationSchema={validationSchema}
@@ -96,7 +92,7 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query }) => {
                   </Form>
                 );
               }}
-            </Formik> */}
+            </Formik>
           </>
         )}
       </div>

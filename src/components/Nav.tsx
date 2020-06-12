@@ -1,10 +1,17 @@
-import { FunctionComponent, useState, useEffect } from "react";
+import { FunctionComponent, useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Login from "./auth/Login";
+import { UserContext } from "src/lib/UserContext";
+import { ReactSVG } from "react-svg";
 
 const Nav: FunctionComponent = () => {
   const [smallScreen, setSmallScreen] = useState<boolean>(false);
   const [nav, setNav] = useState<boolean>(false);
+
+  const { user, setUser, quickLogin, setQuickLogin } = useContext<any>(
+    UserContext
+  );
 
   const router = useRouter();
 
@@ -77,6 +84,14 @@ const Nav: FunctionComponent = () => {
             </>
           ) : (
             ""
+          )}
+          {user ? (
+            <li className="button">{user.email}</li>
+          ) : (
+            <ReactSVG
+              src="/assets/svg/account-circle.svg"
+              onClick={() => setQuickLogin(!quickLogin)}
+            />
           )}
         </ul>
       </div>
