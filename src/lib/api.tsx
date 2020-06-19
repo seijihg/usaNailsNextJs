@@ -1,3 +1,5 @@
+const baseUrl = "http://localhost:8080";
+
 // Contact Form.
 const contactForm7 =
   "https://usanails.uk.cloudlogin.co/wp-json/contact-form-7/v1/contact-forms/49/feedback";
@@ -13,37 +15,47 @@ export const sendEmail = async (data: FormData) => {
 };
 
 // Comments API.
-const commentEndPoint = "http://localhost:8080/api_v1/comment";
+export const getPostComments = async (slug: string) => {
+  const res = await fetch(`${baseUrl}/api_v1/post/${slug}`);
 
-// Signup API
-
-const signupEP = "http://localhost:8080/api_v1/signup";
-
-export const signup = async (data: ReadableStream) => {
-  const res = await fetch(signupEP, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-
-  const user = await res.json();
-  return user;
+  const comments = await res.json();
+  return comments;
 };
 
-// Login API
-
-const loginEP = "http://localhost:8080/api_v1/login";
-
-export const login = async (data: ReadableStream) => {
-  const res = await fetch(loginEP, {
+export const addComment = async (
+  data: {
+    content: string;
+    id_post: string;
+  },
+  token: string | undefined
+) => {
+  const res = await fetch(`${baseUrl}/api_v1/comment`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
     },
     body: JSON.stringify(data),
   });
+  return await res.json();
+};
+
+// Signup and Login API
+
+const signupEP = `${baseUrl}/api_v1/signup`;
+const loginEP = `${baseUrl}/api_v1/login`;
+
+export const loginSignup = async (data: ReadableStream, endPoint: string) => {
+  const res = await fetch(
+    endPoint === "login" ? loginEP : endPoint === "signup" ? signupEP : "",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
 
   const user = await res.json();
   return user;
@@ -51,7 +63,7 @@ export const login = async (data: ReadableStream) => {
 
 // Get a user API
 
-const userEP = "http://localhost:8080/api_v1/user/get-me";
+const userEP = `${baseUrl}/api_v1/user/get-me`;
 
 export const getMe = async (token: string) => {
   const res = await fetch(userEP, {

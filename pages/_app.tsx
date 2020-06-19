@@ -18,7 +18,7 @@ const MyApp: NextPage<any> = ({ Component, pageProps, loggedUser }) => {
   const [quickLogin, setQuickLogin] = useState<boolean>(false);
 
   useEffect(() => {
-    loggedUser && setUser(loggedUser);
+    loggedUser ? setUser(loggedUser) : setUser(null);
   }, [loggedUser]);
 
   // useMemo cached values if user or setUser don't change
@@ -43,11 +43,9 @@ MyApp.getInitialProps = async (appCtx: CookiesPageContext) => {
   const cookies = cookie.parse(
     request ? request.headers.cookie || "" : document.cookie
   );
-
-  if (Object.keys(cookies).length === 0) {
+  if (Object.keys(cookies).length === 0 || cookies.token === "undefined") {
     return {};
   }
-
   const loggedUser = await getMe(cookies.token);
 
   return { loggedUser };

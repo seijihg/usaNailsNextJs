@@ -1,7 +1,6 @@
 import { FunctionComponent, useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Login from "./auth/Login";
 import { UserContext } from "src/lib/UserContext";
 import { ReactSVG } from "react-svg";
 

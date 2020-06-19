@@ -81,7 +81,7 @@
     position: relative;
   }
 
-  textarea {
+  input {
     padding: 1rem;
     width: 100%;
     border-radius: 5px;
@@ -102,12 +102,24 @@
     color: $offwhite-colour;
     border-style: none;
     background: $dark-gray-colour;
-    float: right;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 
     &:hover {
       background: $pink-colour;
       color: $offwhite-colour;
       transition: all 250ms;
+    }
+  }
+
+  .comment-tab {
+    margin: 1rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+    background: $dark-gray-colour;
+    p {
+      color: $offwhite-colour;
     }
   }
 }

@@ -3,10 +3,14 @@ import { gql } from "apollo-boost";
 import { useQuery } from "react-apollo";
 import ReactHtmlParser from "react-html-parser";
 import { dateToReadableTextDate } from "src/lib/functions";
-import { Formik, Form, useField, FieldConfig } from "formik";
+import { Formik, Form, Field } from "formik";
 import TextareaAutosize from "react-textarea-autosize";
 import * as Yup from "yup";
-import { FunctionComponent } from "react";
+import { getPostComments, addComment } from "src/lib/api";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "src/lib/UserContext";
+import Cookies from "js-cookie";
+import PostBlogComment from "src/components/news_blogs_pages/PostBlogComments";
 
 const newOrBlogQuery = gql`
   query($id: ID!) {
@@ -21,41 +25,27 @@ const newOrBlogQuery = gql`
 
 interface INewsAndBlogsProps {
   query: any;
+  getPost: any;
 }
 
 const validationSchema = Yup.object({
-  comment: Yup.string().required(),
+  comment: Yup.string().min(5, "Comments must be at least 5 characters"),
 });
 
-const MyCommentField: FunctionComponent<
-  FieldConfig & {
-    placeholder: string;
-    minRows: number;
-    maxRows: number;
-  }
-> = ({ placeholder, minRows, maxRows, ...props }) => {
-  const [field, meta] = useField(props);
-  const errorText = meta.error && meta.touched ? meta.error : "";
-  return (
-    <>
-      <TextareaAutosize
-        {...field}
-        placeholder={placeholder}
-        minRows={10}
-        maxRows={15}
-      />
-      <div className="errors">{errorText}</div>
-    </>
-  );
-};
-
-const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query }) => {
+const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query, getPost }) => {
   const { loading, error, data } = useQuery(newOrBlogQuery, {
     variables: { id: query.slug },
   });
   const { post } = data || {};
   const { title, date, content } = post || {};
+  const { user } = useContext<any>(UserContext);
+  const [comments, setComments] = useState([]);
 
+  useEffect(() => {
+    if (getPost) {
+      setComments(getPost.comments);
+    }
+  }, [getPost]);
   return (
     <>
       <div className={"main-new-blog-page news-and-blogs-wp-format"}>
@@ -71,28 +61,53 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query }) => {
             <h2>Comments:</h2>
             <Formik
               initialValues={{ comment: "" }}
-              onSubmit={(data, { setSubmitting }) => {
-                setSubmitting(false);
+              onSubmit={(data, { setSubmitting, resetForm }) => {
+                if (!user) {
+                  setSubmitting(false);
+                  return;
+                }
+                const token = Cookies.get("token");
+                addComment(
+                  { content: data.comment, id_post: query.slug },
+                  token
+                )
+                  .then((res) => {
+                    getPostComments(query.slug)
+                      .then((res) => setComments(res.comments))
+                      .catch(console.log);
+                    resetForm();
+                    setSubmitting(false);
+                  })
+                  .catch((err) => console.log(err));
               }}
               validationSchema={validationSchema}
             >
               {({ values, errors, isSubmitting }) => {
                 return (
                   <Form>
-                    <MyCommentField
+                    <Field
                       name="comment"
                       type="input"
-                      placeholder="Enter Message"
-                      minRows={10}
-                      maxRows={15}
+                      required
+                      placeholder="Write a comment..."
                     />
-                    <button disabled={isSubmitting} type="submit">
-                      SUBMIT
-                    </button>
+                    {errors.comment && (
+                      <p className="error">{errors.comment}</p>
+                    )}
                   </Form>
                 );
               }}
             </Formik>
+            {comments.map((comment: any) => (
+              <PostBlogComment
+                key={comment.id}
+                content={comment.content}
+                updatedAt={comment.updatedAt}
+                email={comment.user.email}
+                firstName={comment.fistName}
+                lastName={comment.lastName}
+              />
+            ))}
           </>
         )}
       </div>
@@ -102,8 +117,9 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query }) => {
 
 export const getServerSideProps = async (ctx: NextPageContext) => {
   const { query } = ctx;
+  const getPost = await getPostComments(query?.slug as string);
 
-  return { props: { query } };
+  return { props: { query, getPost } };
 };
 
 export default newsAndBlogs;
