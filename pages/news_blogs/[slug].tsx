@@ -4,13 +4,15 @@ import { useQuery } from "react-apollo";
 import ReactHtmlParser from "react-html-parser";
 import { dateToReadableTextDate } from "src/lib/functions";
 import { Formik, Form, Field } from "formik";
-import TextareaAutosize from "react-textarea-autosize";
 import * as Yup from "yup";
 import { getPostComments, addComment } from "src/lib/api";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "src/lib/UserContext";
 import Cookies from "js-cookie";
 import PostBlogComment from "src/components/news_blogs_pages/PostBlogComments";
+import { ReactSVG } from "react-svg";
+import AnimateHeight from "react-animate-height";
+import { useStyles } from "src/styles/modules/useStyles";
 
 const newOrBlogQuery = gql`
   query($id: ID!) {
@@ -40,6 +42,7 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query, getPost }) => {
   const { title, date, content } = post || {};
   const { user } = useContext<any>(UserContext);
   const [comments, setComments] = useState([]);
+  const [hideCmts, setHideCmts] = useState<boolean>(false);
 
   useEffect(() => {
     if (getPost) {
@@ -58,56 +61,73 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query, getPost }) => {
             <h3>{dateToReadableTextDate(date?.toString())}</h3>
             <h1>{ReactHtmlParser(title)}</h1>
             <div className="new-content">{ReactHtmlParser(content)}</div>
-            <h2>Comments:</h2>
-            <Formik
-              initialValues={{ comment: "" }}
-              onSubmit={(data, { setSubmitting, resetForm }) => {
-                if (!user) {
-                  setSubmitting(false);
-                  return;
-                }
-                const token = Cookies.get("token");
-                addComment(
-                  { content: data.comment, id_post: query.slug },
-                  token
-                )
-                  .then((res) => {
-                    getPostComments(query.slug)
-                      .then((res) => setComments(res.comments))
-                      .catch(console.log);
-                    resetForm();
+
+            {user && (
+              <Formik
+                initialValues={{ comment: "" }}
+                onSubmit={(data, { setSubmitting, resetForm }) => {
+                  if (!user) {
                     setSubmitting(false);
-                  })
-                  .catch((err) => console.log(err));
-              }}
-              validationSchema={validationSchema}
+                    return;
+                  }
+                  const token = Cookies.get("token");
+                  addComment(
+                    { content: data.comment, id_post: query.slug },
+                    token
+                  )
+                    .then((res) => {
+                      getPostComments(query.slug)
+                        .then((res) => setComments(res.comments))
+                        .catch(console.log);
+                      resetForm();
+                      setSubmitting(false);
+                    })
+                    .catch((err) => console.log(err));
+                }}
+                validationSchema={validationSchema}
+              >
+                {({ values, errors, isSubmitting }) => {
+                  return (
+                    <Form>
+                      <Field
+                        name="comment"
+                        type="input"
+                        required
+                        placeholder="Write a comment..."
+                      />
+                      {errors.comment && (
+                        <p className="error">{errors.comment}</p>
+                      )}
+                    </Form>
+                  );
+                }}
+              </Formik>
+            )}
+            <div className="button-comments-likes">
+              <div
+                className="comment-block"
+                onClick={() => setHideCmts(!hideCmts)}
+              >
+                <ReactSVG src="/assets/svg/comment-outline.svg" />
+                <h2>Comment</h2>
+              </div>
+            </div>
+            <AnimateHeight
+              duration={500}
+              height={hideCmts ? "auto" : 0}
+              animateOpacity={true}
             >
-              {({ values, errors, isSubmitting }) => {
-                return (
-                  <Form>
-                    <Field
-                      name="comment"
-                      type="input"
-                      required
-                      placeholder="Write a comment..."
-                    />
-                    {errors.comment && (
-                      <p className="error">{errors.comment}</p>
-                    )}
-                  </Form>
-                );
-              }}
-            </Formik>
-            {comments.map((comment: any) => (
-              <PostBlogComment
-                key={comment.id}
-                content={comment.content}
-                updatedAt={comment.updatedAt}
-                email={comment.user.email}
-                firstName={comment.fistName}
-                lastName={comment.lastName}
-              />
-            ))}
+              {comments.map((comment: any) => (
+                <PostBlogComment
+                  key={comment.id}
+                  content={comment.content}
+                  updatedAt={comment.updatedAt}
+                  email={comment.user.email}
+                  firstName={comment.fistName}
+                  lastName={comment.lastName}
+                />
+              ))}
+            </AnimateHeight>
           </>
         )}
       </div>

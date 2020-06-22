@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { UserContext } from "src/lib/UserContext";
 import { ReactSVG } from "react-svg";
+import Cookies from "js-cookie";
 
 const Nav: FunctionComponent = () => {
   const [smallScreen, setSmallScreen] = useState<boolean>(false);
@@ -85,7 +86,18 @@ const Nav: FunctionComponent = () => {
             ""
           )}
           {user ? (
-            <li className="button">{user.email}</li>
+            <>
+              <li className="button">{user.email}</li>
+              <li
+                className="button"
+                onClick={() => {
+                  Cookies.remove("token");
+                  setUser(null);
+                }}
+              >
+                LOG OUT
+              </li>
+            </>
           ) : (
             <ReactSVG
               src="/assets/svg/account-circle.svg"
