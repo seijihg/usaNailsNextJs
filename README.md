@@ -1,6 +1,6 @@
 # USA Nails Frontend
 
-Commercial project rebuilding the [USA Nails](http://www.usa-nails.co.uk/). From single html page converted to NextJS Front-End and Wordpress + NodeJS Backend.
+Commercial project rebuilding the [USA Nails](http://www.usa-nails.co.uk/). From single html page converted to NextJS/TS Front-End and Wordpress + NodeJS/TS Backend.
 
 ## Frontend with NextJs
 
@@ -8,8 +8,11 @@ Commercial project rebuilding the [USA Nails](http://www.usa-nails.co.uk/). From
 2. Animation with Reacts Libs.
 3. Users Authentication, Comments, Users API EndPoint with NodeJS.
 4. News and Blogs via GraphQL EndPoint Wordpress.
+5. MaterialUI on some of the components.
 
-...by using WP it is easier to admins to adding news and blogs and safe time building the CMS.
+...By using WP it is easier to admins to adding news and blogs and safe time building the CMS.
+
+---
 
 ## Implemented features so far:
 
@@ -26,3 +29,4 @@ Commercial project rebuilding the [USA Nails](http://www.usa-nails.co.uk/). From
 3. Activation user link to prevent spam users.
 4. Like comments.
 5. Email subscriptions for promotions.
+6. Password recovery.
