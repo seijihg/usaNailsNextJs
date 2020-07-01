@@ -12,6 +12,7 @@ const Nav: FunctionComponent = () => {
   const { user, setUser, quickLogin, setQuickLogin } = useContext<any>(
     UserContext
   );
+  const nickName = user?.email?.split("@")[0];
 
   const router = useRouter();
 
@@ -87,7 +88,11 @@ const Nav: FunctionComponent = () => {
           )}
           {user ? (
             <>
-              <li className="button">{user.email}</li>
+              <li className="button">
+                <Link href={"/profile/[user]"} as={`/profile/${nickName}`}>
+                  <a>{user.email}</a>
+                </Link>
+              </li>
               <li
                 className="button"
                 onClick={() => {

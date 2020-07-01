@@ -77,3 +77,44 @@ export const getMe = async (token: string) => {
   const user = await res.json();
   return user;
 };
+
+// Upload avatar
+const uploadAvtEP = `${baseUrl}/api_v1/upload/avatar`;
+
+export const uploadAvatar = async (
+  form: FormData,
+  token: string | undefined
+) => {
+  const res = await fetch(uploadAvtEP, {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+    body: form,
+  });
+  return await res.json();
+};
+
+// Update user
+
+export const updateUser = async (
+  body: {
+    firstName: string;
+    lastName: string;
+    title: { [key: string]: string };
+    dob: Date;
+  },
+  id: string,
+  token: string | undefined
+) => {
+  const res = await fetch(`${baseUrl}/api_v1/user/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+    body: JSON.stringify(body),
+  });
+
+  return await res.json();
+};

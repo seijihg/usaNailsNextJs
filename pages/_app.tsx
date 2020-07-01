@@ -7,6 +7,7 @@ import { NextPageContext, NextPage } from "next";
 import { UserContext } from "src/lib/UserContext";
 import { getMe } from "src/lib/api";
 import { useApollo } from "src/lib/apolloClient";
+import "react-datepicker/dist/react-datepicker.css";
 
 interface CookiesPageContext extends NextPageContext {
   ctx: NextPageContext;
@@ -47,6 +48,11 @@ MyApp.getInitialProps = async (appCtx: CookiesPageContext) => {
     return {};
   }
   const loggedUser = await getMe(cookies.token);
+
+  if (loggedUser.error) {
+    console.log(loggedUser);
+    return {};
+  }
 
   return { loggedUser };
 };

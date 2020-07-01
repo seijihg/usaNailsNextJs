@@ -9,6 +9,7 @@
     // background: $pink-dark-colour;
 
     img {
+      width: 150px;
       clip-path: circle(75px at center);
     }
   }
@@ -23,6 +24,14 @@
 
     h2 {
       color: $pink-colour;
+    }
+    input {
+      &:focus {
+        border: 2px solid $pink-dark-colour;
+      }
+    }
+    .basic-select {
+      font-family: Alice;
     }
   }
 
