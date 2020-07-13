@@ -17,15 +17,15 @@ const Nav: FunctionComponent = () => {
   const router = useRouter();
 
   useEffect(() => {
-    setSmallScreen(window.innerWidth < 576 ? true : false);
+    setSmallScreen(window.innerWidth < 769 ? true : false);
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const handleResize = () => {
-    setSmallScreen(window.innerWidth < 576 ? true : false);
-    setNav(window.innerWidth > 576 ? true : false);
+    setSmallScreen(window.innerWidth < 769 ? true : false);
+    setNav(window.innerWidth > 769 ? true : false);
   };
 
   const goToSection = (index: number): void => {

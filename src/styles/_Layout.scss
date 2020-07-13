@@ -23,7 +23,12 @@
     }
 
     form {
+      width: 26.25rem;
       padding: 2rem;
+
+      @media (max-width: 36rem) {
+        width: auto;
+      }
 
       .error-box,
       .error {
@@ -56,7 +61,14 @@
 
         div {
           margin: auto 0;
+          cursor: pointer;
         }
+      }
+
+      .back-sign {
+        font-size: 0.75rem;
+        margin-top: 0.75rem;
+        cursor: pointer;
       }
     }
 

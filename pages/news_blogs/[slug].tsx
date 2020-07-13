@@ -12,7 +12,6 @@ import Cookies from "js-cookie";
 import PostBlogComment from "src/components/news_blogs_pages/PostBlogComments";
 import { ReactSVG } from "react-svg";
 import AnimateHeight from "react-animate-height";
-import { useStyles } from "src/styles/modules/useStyles";
 
 const newOrBlogQuery = gql`
   query($id: ID!) {
@@ -43,12 +42,14 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query, getPost }) => {
   const { user } = useContext<any>(UserContext);
   const [comments, setComments] = useState([]);
   const [hideCmts, setHideCmts] = useState<boolean>(false);
+  const lengthComments = comments.length;
 
   useEffect(() => {
     if (getPost) {
       setComments(getPost.comments);
     }
   }, [getPost]);
+
   return (
     <>
       <div className={"main-new-blog-page news-and-blogs-wp-format"}>
@@ -62,6 +63,34 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query, getPost }) => {
             <h1>{ReactHtmlParser(title)}</h1>
             <div className="new-content">{ReactHtmlParser(content)}</div>
 
+            <div className="button-comments-likes">
+              <div
+                className="comment-block"
+                onClick={() => setHideCmts(!hideCmts)}
+              >
+                <ReactSVG src="/assets/svg/comment-outline.svg" />
+                <h2>
+                  {lengthComments === 0 ? "" : lengthComments} Comment
+                  {lengthComments > 1 ? "s" : ""}
+                </h2>
+              </div>
+            </div>
+            <AnimateHeight
+              duration={500}
+              height={hideCmts ? "auto" : 0}
+              animateOpacity={true}
+            >
+              {comments.map((comment: any) => (
+                <PostBlogComment
+                  key={comment.id}
+                  content={comment.content}
+                  updatedAt={comment.updatedAt}
+                  email={comment.user.email}
+                  firstName={comment.fistName}
+                  lastName={comment.lastName}
+                />
+              ))}
+            </AnimateHeight>
             {user && (
               <Formik
                 initialValues={{ comment: "" }}
@@ -103,31 +132,6 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query, getPost }) => {
                 }}
               </Formik>
             )}
-            <div className="button-comments-likes">
-              <div
-                className="comment-block"
-                onClick={() => setHideCmts(!hideCmts)}
-              >
-                <ReactSVG src="/assets/svg/comment-outline.svg" />
-                <h2>Comment</h2>
-              </div>
-            </div>
-            <AnimateHeight
-              duration={500}
-              height={hideCmts ? "auto" : 0}
-              animateOpacity={true}
-            >
-              {comments.map((comment: any) => (
-                <PostBlogComment
-                  key={comment.id}
-                  content={comment.content}
-                  updatedAt={comment.updatedAt}
-                  email={comment.user.email}
-                  firstName={comment.fistName}
-                  lastName={comment.lastName}
-                />
-              ))}
-            </AnimateHeight>
           </>
         )}
       </div>

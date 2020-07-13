@@ -21,12 +21,12 @@ Commercial project rebuilding the [USA Nails](http://www.usa-nails.co.uk/). From
 3. Users login and logout.
 4. Contact form sending out email.
 5. Sending out email after user registration.
+6. Profile page with updating personal data
+7. Avatar upload.
 
 ## Features on the way:
 
-1. Profile page.
-2. Avatar upload.
-3. Activation user link to prevent spam users.
-4. Like comments.
-5. Email subscriptions for promotions.
-6. Password recovery.
+- Activation user link to prevent spam users.
+- Like comments.
+- Email subscriptions for promotions.
+- Password recovery.

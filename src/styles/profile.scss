@@ -1,7 +1,12 @@
 .profile {
   margin: auto;
-  width: $maxWidth;
+  width: 100%;
+  max-width: $maxWidth;
   display: flex;
+
+  @media (max-width: $maxWidth) {
+    padding: 0 0.5rem;
+  }
 
   .left-side {
     width: 20%;
@@ -11,6 +16,10 @@
     img {
       width: 150px;
       clip-path: circle(75px at center);
+    }
+
+    input {
+      width: 100%;
     }
   }
 
@@ -33,15 +42,64 @@
     .basic-select {
       font-family: Alice;
     }
-  }
 
+    @media (max-width: $maxWidth) {
+      form {
+        display: flex;
+        flex-direction: column;
+
+        input,
+        .basic-select,
+        .date-picking {
+          width: 100%;
+          margin-top: 1rem;
+        }
+      }
+    }
+  }
   @media (max-width: 36rem) {
     padding: 1rem 1rem;
     width: 100%;
     flex-direction: column;
 
-    div:first-child {
+    .right-side {
       width: 100%;
     }
+
+    .left-side {
+      width: 100%;
+      margin: auto;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      input,
+      .basic-select,
+      .date-picking {
+        width: 100%;
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  form {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+
+    input,
+    .basic-select,
+    .date-picking {
+      margin-right: 1rem;
+      font-size: 1rem;
+    }
+  }
+
+  .basic-select {
+    min-width: 6rem;
   }
 }

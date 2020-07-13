@@ -118,3 +118,17 @@ export const updateUser = async (
 
   return await res.json();
 };
+
+// Send email with link to reset passwond
+
+export const sendEmailToResetPass = async (inputEmail: string) => {
+  const res = await fetch(`${baseUrl}/api_v1/reset-password`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email: inputEmail }),
+  });
+
+  return await res.json();
+};

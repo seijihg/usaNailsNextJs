@@ -5,6 +5,7 @@ import Head from "next/head";
 import Login from "./auth/Login";
 import { UserContext } from "src/lib/UserContext";
 import Signup from "./auth/Signup";
+import ForgotPassword from "./auth/ForgotPassword";
 
 const Layout: FC = ({ children }) => {
   const { quickLogin } = useContext<any>(UserContext);
@@ -17,13 +18,15 @@ const Layout: FC = ({ children }) => {
       </Head>
       <Nav />
       {quickLogin &&
-        (logOrSign === "login" ? (
+        ((logOrSign === "login" && (
           <Login logOrSign={logOrSign} setLogOrSign={setLogOrSign} />
-        ) : (
-          logOrSign === "signup" && (
+        )) ||
+          (logOrSign === "signup" && (
             <Signup logOrSign={logOrSign} setLogOrSign={setLogOrSign} />
-          )
-        ))}
+          )) ||
+          (logOrSign === "password" && (
+            <ForgotPassword logOrSign={logOrSign} setLogOrSign={setLogOrSign} />
+          )))}
       {quickLogin && (
         <style jsx global>
           {`

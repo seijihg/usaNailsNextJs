@@ -114,8 +114,9 @@
   }
 
   .button-comments-likes {
+    margin-top: 1rem;
     border: solid $pink-dark-colour;
-    border-width: 0 0 1px 0;
+    border-width: 1px 0 1px 0;
     padding: 0.5rem 0;
 
     .comment-block {

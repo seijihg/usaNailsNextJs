@@ -66,13 +66,20 @@ const Login: FC<ILoginProps> = ({ logOrSign, setLogOrSign }) => {
               </div>
               {apiErr !== "" && <p className="error-box">{apiErr}</p>}
               <div className="input-field">
-                <Field name="email" type="email" placeholder="email" required />
+                <Field
+                  name="email"
+                  type="email"
+                  placeholder="email"
+                  autoComplete="email"
+                  required
+                />
                 {errors.email && <p className="error">{errors.email}</p>}
               </div>
               <div className="input-field">
                 <Field
                   name="password"
                   type="password"
+                  autoComplete="password"
                   placeholder="password"
                   required
                 />
@@ -111,7 +118,9 @@ const Login: FC<ILoginProps> = ({ logOrSign, setLogOrSign }) => {
                     </span>
                   }
                 />
-                <div>Forgot password?</div>
+                <div onClick={() => setLogOrSign("password")}>
+                  Forgot password?
+                </div>
               </div>
 
               {/* <pre>{JSON.stringify(values, null, 2)}</pre>

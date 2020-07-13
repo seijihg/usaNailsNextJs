@@ -5,7 +5,7 @@ import Select from "react-select";
 import DatePicker from "react-datepicker";
 import { uploadAvatar, updateUser } from "src/lib/api";
 import Cookies from "js-cookie";
-import { string } from "yup";
+import Router from "next/router";
 
 const options = [
   { value: "mr", label: "Mr." },
@@ -31,6 +31,8 @@ const userProfile = () => {
   useEffect(() => {
     if (user) {
       updateDisplayAvatar(user.avatar);
+    } else {
+      Router.push("/");
     }
   }, [user]);
 
@@ -48,6 +50,7 @@ const userProfile = () => {
         <div className="profile">
           <div className="left-side">
             <label className="profile-picture">
+              <img src={displayAvatar} alt="profile picture" />
               <input
                 type="file"
                 style={{ visibility: "hidden" }}
@@ -82,7 +85,6 @@ const userProfile = () => {
                     .catch(console.log);
                 }}
               />
-              <img src={displayAvatar} alt="profile picture" />
             </label>
           </div>
 
@@ -150,8 +152,9 @@ const userProfile = () => {
                         dateFormatCalendar="MMMM"
                         yearDropdownItemNumber={100}
                         scrollableYearDropdown
+                        className="date-picking"
                       />
-                      <pre>{JSON.stringify(values, null, 2)}</pre>
+                      {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
                       <button hidden={true} />
                     </Form>
                   </>
