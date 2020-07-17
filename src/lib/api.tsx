@@ -1,7 +1,7 @@
 const baseUrl =
-  location.hostname === "localhost"
+  typeof window !== "undefined" && location.hostname === "localhost"
     ? "http://localhost:8080"
-    : "http://newusanailseb-env.eba-kuqcejv3.eu-west-2.elasticbeanstalk.com";
+    : "https://usa-nails.uk";
 
 // Contact Form.
 const contactForm7 =
