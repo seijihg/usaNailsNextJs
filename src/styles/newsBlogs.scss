@@ -72,7 +72,7 @@
   border-color: $pink-dark-colour;
   min-height: 100vh;
 
-  @media (max-width: 576px) {
+  @media (max-width: 36rem) {
     padding: 1rem 1rem;
   }
 
@@ -81,7 +81,7 @@
     position: relative;
   }
 
-  textarea {
+  input {
     padding: 1rem;
     width: 100%;
     border-radius: 5px;
@@ -102,12 +102,41 @@
     color: $offwhite-colour;
     border-style: none;
     background: $dark-gray-colour;
-    float: right;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 
     &:hover {
       background: $pink-colour;
       color: $offwhite-colour;
       transition: all 250ms;
+    }
+  }
+
+  .button-comments-likes {
+    margin-top: 1rem;
+    border: solid $pink-dark-colour;
+    border-width: 1px 0 1px 0;
+    padding: 0.5rem 0;
+
+    .comment-block {
+      display: flex;
+      cursor: pointer;
+      margin-top: 0.3rem;
+
+      svg {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  .comment-tab {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+    background: $dark-gray-colour;
+    p {
+      color: $offwhite-colour;
     }
   }
 }

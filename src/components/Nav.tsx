@@ -1,23 +1,31 @@
-import { FunctionComponent, useState, useEffect } from "react";
+import { FunctionComponent, useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { UserContext } from "src/lib/UserContext";
+import { ReactSVG } from "react-svg";
+import Cookies from "js-cookie";
 
 const Nav: FunctionComponent = () => {
   const [smallScreen, setSmallScreen] = useState<boolean>(false);
   const [nav, setNav] = useState<boolean>(false);
 
+  const { user, setUser, quickLogin, setQuickLogin } = useContext<any>(
+    UserContext
+  );
+  const nickName = user?.email?.split("@")[0];
+
   const router = useRouter();
 
   useEffect(() => {
-    setSmallScreen(window.innerWidth < 576 ? true : false);
+    setSmallScreen(window.innerWidth < 769 ? true : false);
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const handleResize = () => {
-    setSmallScreen(window.innerWidth < 576 ? true : false);
-    setNav(window.innerWidth > 576 ? true : false);
+    setSmallScreen(window.innerWidth < 769 ? true : false);
+    setNav(window.innerWidth > 769 ? true : false);
   };
 
   const goToSection = (index: number): void => {
@@ -77,6 +85,29 @@ const Nav: FunctionComponent = () => {
             </>
           ) : (
             ""
+          )}
+          {user ? (
+            <>
+              <li className="button">
+                <Link href={"/profile/[user]"} as={`/profile/${nickName}`}>
+                  <a>{user.email}</a>
+                </Link>
+              </li>
+              <li
+                className="button"
+                onClick={() => {
+                  Cookies.remove("token");
+                  setUser(null);
+                }}
+              >
+                LOG OUT
+              </li>
+            </>
+          ) : (
+            <ReactSVG
+              src="/assets/svg/account-circle.svg"
+              onClick={() => setQuickLogin(!quickLogin)}
+            />
           )}
         </ul>
       </div>

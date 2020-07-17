@@ -40,13 +40,13 @@ const Index: NextPage = () => {
         <div className="index-follow-us">
           <h1>FOLLOW US ON</h1>
           <div className="icons">
-            <Link href="//www.facebook.com/usanailsberkhamstead">
-              <a>
+            <Link href="//www.facebook.com/usanailsberkhamsted">
+              <a target="_blank">
                 <img src="/assets/img/icons/facebook.png" alt="fb icon" />
               </a>
             </Link>
             <Link href="//www.instagram.com/usa_nails_berkhamsted/">
-              <a>
+              <a target="_blank">
                 <img
                   src="/assets/img/icons/instagram.png"
                   alt="instagram icon"

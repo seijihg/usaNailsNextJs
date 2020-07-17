@@ -10,7 +10,7 @@ const months: string[] = [
   "September",
   "October",
   "November",
-  "December"
+  "December",
 ];
 
 const nth = (d: number): string => {
@@ -59,8 +59,9 @@ export const formatDate = (inputDate: string) => {
   if (hours.length == 1) {
     hours = `0${hours}`;
   }
-  return `${hours}:${minutes} ${date.getDate()}/${date.getMonth() +
-    1}/${date.getFullYear()}`;
+  return `${hours}:${minutes} ${date.getDate()}/${
+    date.getMonth() + 1
+  }/${date.getFullYear()}`;
 };
 
 export const formatDateOnly = (date: Date | string) => {
@@ -68,4 +69,17 @@ export const formatDateOnly = (date: Date | string) => {
     date = new Date(date);
   }
   return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+};
+
+export const millisToMinutesAndSeconds = (millis: number) => {
+  var minutes = Math.floor(millis / 60000);
+  if (minutes > 60 && minutes < 1440) {
+    const hour = Math.floor(minutes / 60);
+    return `${hour}h`;
+  }
+  if (minutes > 1440) {
+    const day = Math.floor(minutes / 1440);
+    return `${day}d`;
+  }
+  return `${minutes}m`;
 };

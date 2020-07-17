@@ -15,18 +15,6 @@ const getNewsQuery = gql`
           content
           date
           slug
-          comments {
-            nodes {
-              content
-              date
-              author {
-                ... on User {
-                  id
-                  email
-                }
-              }
-            }
-          }
         }
       }
     }

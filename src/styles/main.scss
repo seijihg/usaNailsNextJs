@@ -4,7 +4,7 @@ $gray-colour: #f4f4f4;
 $dark-gray-colour: #9b9b9b;
 $pink-colour: #f2a69a;
 $pink-dark-colour: #99525d;
-$maxWidth: 1200px;
+$maxWidth: 75rem;
 
 * {
   box-sizing: border-box;
@@ -18,6 +18,7 @@ body {
   background: var(--offwhite-colour);
   font-size: 16px;
   line-height: 1.5;
+
   p {
     font-size: 0.85em;
     color: $dark-gray-colour;
@@ -49,14 +50,37 @@ body {
     font-size: 0.7em;
   }
 
-  .button {
-    transition: color 250ms;
+  input,
+  textarea {
+    padding: 0.5rem;
+    font-family: Alice;
+    font-size: 0.75em;
+    border-radius: 5px;
+    border: 1px;
+
+    &:focus,
+    &:focus {
+      // box-shadow: 0 0 0 1px $pink-dark-colour;
+      outline: none;
+    }
+  }
+
+  button {
+    padding: 0.8rem;
+    border-radius: 5px;
     cursor: pointer;
+    transition: all 250ms;
+    color: $pink-dark-colour;
+    border-style: none;
 
     &:hover {
-      color: $pink-colour;
-      transition: color 250ms;
+      background: $pink-colour;
+      color: $offwhite-colour;
+      transition: all 250ms;
     }
+  }
+  .error {
+    color: red;
   }
 }
 
@@ -77,3 +101,5 @@ body {
 @import "./ImageSlides";
 @import "./newsBlogs.scss";
 @import "./loaders.scss";
+@import "./profile.scss";
+@import "./resetPassword.scss";

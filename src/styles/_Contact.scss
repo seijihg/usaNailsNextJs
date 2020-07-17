@@ -56,27 +56,7 @@
       height: 10rem;
     }
   }
-  form {
-    input,
-    textarea {
-      font-family: Alice;
-      font-size: 0.75em;
-    }
-    button {
-      padding: 0.8rem;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: all 250ms;
-      color: $pink-dark-colour;
-      border-style: none;
 
-      &:hover {
-        background: $pink-colour;
-        color: $offwhite-colour;
-        transition: all 250ms;
-      }
-    }
-  }
   @media (max-width: 576px) {
     text-align: center;
 
