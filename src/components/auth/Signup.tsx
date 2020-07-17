@@ -87,7 +87,7 @@ const Signup: FC<ISignProps> = ({ logOrSign, setLogOrSign }) => {
                   placeholder="re-type password"
                   required
                 />
-                {errors.password && <p className="error">{errors.rePass}</p>}
+                {errors.rePass && <p className="error">{errors.rePass}</p>}
               </div>
               <button disabled={isSubmitting} type="submit">
                 <strong>SIGN UP</strong>

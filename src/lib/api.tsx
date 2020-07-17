@@ -1,4 +1,7 @@
-const baseUrl = "http://localhost:8080";
+const baseUrl =
+  location.hostname === "localhost"
+    ? "http://localhost:8080"
+    : "http://newusanailseb-env.eba-kuqcejv3.eu-west-2.elasticbeanstalk.com";
 
 // Contact Form.
 const contactForm7 =
@@ -11,6 +14,7 @@ export const sendEmail = async (data: FormData) => {
   });
 
   const body = await res.json();
+  console.log(location);
   return body;
 };
 
@@ -128,6 +132,23 @@ export const sendEmailToResetPass = async (inputEmail: string) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email: inputEmail }),
+  });
+
+  return await res.json();
+};
+
+// change Pasword with reset form
+
+export const setPassword = async (
+  token: string | string[] | undefined,
+  newPassword: string
+) => {
+  const res = await fetch(`${baseUrl}/api_v1/change-password`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ token: token, password: newPassword }),
   });
 
   return await res.json();
