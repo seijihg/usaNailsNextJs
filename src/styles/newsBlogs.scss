@@ -124,6 +124,10 @@
       cursor: pointer;
       margin-top: 0.3rem;
 
+      h2 {
+        margin: 0;
+      }
+
       svg {
         margin-right: 0.5rem;
       }
@@ -142,15 +146,26 @@
 }
 
 .news-and-blogs-wp-format {
-  h1,
-  h2,
-  h3,
-  h4 {
-    margin: 1rem 0;
+  p {
+    margin: 0.75rem 0;
   }
+
+  a {
+    color: $pink-colour;
+    transition: all 250ms;
+
+    &:hover {
+      color: $pink-dark-colour;
+      transition: all 250ms;
+    }
+  }
+  
   .wp-block-image {
     margin: 1rem 0;
+    text-align: center;
+
     img {
+      padding: 2rem;
       text-align: center;
       width: 100%;
       height: auto;
