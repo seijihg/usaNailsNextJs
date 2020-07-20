@@ -105,7 +105,7 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query, getPost }) => {
                     token
                   )
                     .then((res) => {
-                      getPostComments(query.slug)
+                      getPostComments(query.slug, location.host)
                         .then((res) => setComments(res.comments))
                         .catch(console.log);
                       resetForm();

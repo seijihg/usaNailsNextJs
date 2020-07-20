@@ -20,12 +20,12 @@ export const sendEmail = async (data: FormData) => {
 
 // Comments API.
 export const getPostComments = async (slug: string, host: string) => {
-  const localhost =
+  const url =
     host.split(":")[0] === "localhost"
       ? "http://localhost:8080"
       : "https://usa-nails.uk";
 
-  const res = await fetch(`${localhost}/api_v1/post/${slug}`);
+  const res = await fetch(`${url}/api_v1/post/${slug}`);
 
   const comments = await res.json();
   return comments;
@@ -72,10 +72,13 @@ export const loginSignup = async (data: ReadableStream, endPoint: string) => {
 
 // Get a user API
 
-const userEP = `${baseUrl}/api_v1/user/get-me`;
+export const getMe = async (token: string, host: string) => {
+  const url =
+    host.split(":")[0] === "localhost"
+      ? "http://localhost:8080"
+      : "https://usa-nails.uk";
 
-export const getMe = async (token: string) => {
-  const res = await fetch(userEP, {
+  const res = await fetch(`${url}/api_v1/user/get-me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
