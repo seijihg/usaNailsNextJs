@@ -19,8 +19,13 @@ export const sendEmail = async (data: FormData) => {
 };
 
 // Comments API.
-export const getPostComments = async (slug: string) => {
-  const res = await fetch(`${baseUrl}/api_v1/post/${slug}`);
+export const getPostComments = async (slug: string, host: string) => {
+  const localhost =
+    host.split(":")[0] === "localhost"
+      ? "http://localhost:8080"
+      : "https://usa-nails.uk";
+
+  const res = await fetch(`${localhost}/api_v1/post/${slug}`);
 
   const comments = await res.json();
   return comments;
