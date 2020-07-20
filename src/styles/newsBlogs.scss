@@ -159,13 +159,14 @@
       transition: all 250ms;
     }
   }
-
+  
   .wp-block-image {
     margin: 1rem 0;
     text-align: center;
 
     img {
       padding: 2rem;
+      text-align: center;
       width: 100%;
       height: auto;
     }
