@@ -1,4 +1,4 @@
-const baseUrl =
+export const baseUrl =
   typeof window !== "undefined" && location.hostname === "localhost"
     ? "http://localhost:8080"
     : "https://usa-nails.uk";
@@ -14,7 +14,6 @@ export const sendEmail = async (data: FormData) => {
   });
 
   const body = await res.json();
-  console.log(location);
   return body;
 };
 
@@ -74,17 +73,20 @@ export const loginSignup = async (data: ReadableStream, endPoint: string) => {
 
 export const getMe = async (token: string, host: string) => {
   const url =
-    host.split(":")[0] === "localhost"
+    host?.split(":")[0] === "localhost"
       ? "http://localhost:8080"
       : "https://usa-nails.uk";
 
-  const res = await fetch(`${url}/api_v1/user/get-me`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + token,
-    },
-  });
+  const res = await fetch(
+    `${typeof window === "undefined" ? url : baseUrl}/api_v1/user/get-me`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    }
+  );
 
   const user = await res.json();
   return user;

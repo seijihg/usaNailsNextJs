@@ -134,13 +134,42 @@
     }
   }
 
-  .comment-tab {
-    margin-top: 1rem;
-    padding: 0.5rem;
-    border-radius: 10px;
-    background: $dark-gray-colour;
-    p {
-      color: $offwhite-colour;
+  .comment-flex {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+
+    .comment-tab {
+      margin-top: 1rem;
+      padding: 0.5rem;
+      border-radius: 10px;
+      background: $dark-gray-colour;
+      width: 100%;
+
+      p {
+        color: $offwhite-colour;
+      }
+    }
+    .comment-bg {
+      margin: auto;
+      background-image: url("/assets/img/icons/iconspack.png");
+      background-repeat: no-repeat;
+      width: 16px;
+      height: 16px;
+      background-position: 0 -1025px;
+    }
+
+    .comments-hidden-menu {
+      position: absolute;
+      background: $dark-gray-colour;
+      border: 1px solid $offwhite-colour;
+      border-radius: 5px;
+      right: 0.5rem;
+      bottom: -2rem;
+      padding: 0.75rem;
+      li {
+        list-style: none;
+      }
     }
   }
 }
@@ -159,7 +188,7 @@
       transition: all 250ms;
     }
   }
-  
+
   .wp-block-image {
     margin: 1rem 0;
     text-align: center;

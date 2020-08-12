@@ -48,6 +48,7 @@ MyApp.getInitialProps = async (appCtx: CookiesPageContext) => {
   if (Object.keys(cookies).length === 0 || cookies.token === "undefined") {
     return {};
   }
+
   const loggedUser = await getMe(cookies.token, request?.headers.host as any);
 
   if (loggedUser.error) {

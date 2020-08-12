@@ -50,6 +50,8 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query, getPost }) => {
     }
   }, [getPost]);
 
+  console.log(comments);
+
   return (
     <>
       <div className={"main-new-blog-page news-and-blogs-wp-format"}>
@@ -83,6 +85,7 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query, getPost }) => {
               {comments.map((comment: any) => (
                 <PostBlogComment
                   key={comment.id}
+                  commentId={comment.id}
                   content={comment.content}
                   updatedAt={comment.updatedAt}
                   email={comment.user.email}
