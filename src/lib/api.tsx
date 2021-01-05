@@ -4,7 +4,7 @@ const baseUrl =
     : "https://usa-nails.uk";
 
 // Contact Form.
-const contactForm = "http://localhost:8080/api_v1/contact";
+const contactForm = `${baseUrl}/api_v1/contact`;
 
 export const sendEmail = async (data: {
   name: string;
