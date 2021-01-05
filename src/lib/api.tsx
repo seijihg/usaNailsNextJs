@@ -4,17 +4,23 @@ const baseUrl =
     : "https://usa-nails.uk";
 
 // Contact Form.
-const contactForm7 =
-  "https://usanails.uk.cloudlogin.co/wp-json/contact-form-7/v1/contact-forms/49/feedback";
+const contactForm = "http://localhost:8080/api_v1/contact";
 
-export const sendEmail = async (data: FormData) => {
-  const res = await fetch(contactForm7, {
+export const sendEmail = async (data: {
+  name: string;
+  email: string;
+  content: string;
+}) => {
+  const res = await fetch(contactForm, {
     method: "POST",
-    body: data,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
   });
 
   const body = await res.json();
-  console.log(location);
+  console.log(body);
   return body;
 };
 

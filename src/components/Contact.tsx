@@ -10,12 +10,19 @@ const Contact: FunctionComponent = () => {
 
   const emailSubmitHandler = (e: FormEvent) => {
     e.preventDefault();
-    let data = new FormData();
-    data.append("your-name", name);
-    data.append("your-email", email);
-    data.append("your-message", emailContent);
 
-    sendEmail(data);
+    // let data = new FormData();
+    // data.append("your-name", name);
+    // data.append("your-email", email);
+    // data.append("your-message", emailContent);
+
+    let emailBody = {
+      name: name,
+      email: email,
+      content: emailContent,
+    };
+
+    sendEmail(emailBody);
 
     setEmailContent("");
     setName("");
