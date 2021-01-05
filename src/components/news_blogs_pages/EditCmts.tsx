@@ -8,9 +8,7 @@ interface IEditCmtsProps {
 const EditCmts: FC<IEditCmtsProps> = ({ setIsEditComment, isEditComment }) => {
   return (
     <div className="comments-hidden-menu">
-      <ul>
-        <li onClick={() => setIsEditComment(!isEditComment)}>Edit</li>
-      </ul>
+      <div onClick={() => setIsEditComment(!isEditComment)}>Edit</div>
     </div>
   );
 };

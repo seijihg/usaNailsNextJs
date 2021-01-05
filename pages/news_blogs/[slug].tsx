@@ -27,13 +27,18 @@ const newOrBlogQuery = gql`
 interface INewsAndBlogsProps {
   query: any;
   getPost: any;
+  host: string;
 }
 
 const validationSchema = Yup.object({
   comment: Yup.string().min(5, "Comments must be at least 5 characters"),
 });
 
-const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query, getPost }) => {
+const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({
+  query,
+  getPost,
+  host,
+}) => {
   const { loading, error, data } = useQuery(newOrBlogQuery, {
     variables: { id: query.slug },
   });
@@ -43,6 +48,8 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query, getPost }) => {
   const [comments, setComments] = useState([]);
   const [hideCmts, setHideCmts] = useState<boolean>(false);
   const lengthComments = comments.length;
+
+  console.log(host);
 
   useEffect(() => {
     if (getPost) {
@@ -85,12 +92,8 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query, getPost }) => {
               {comments.map((comment: any) => (
                 <PostBlogComment
                   key={comment.id}
-                  commentId={comment.id}
-                  content={comment.content}
-                  updatedAt={comment.updatedAt}
-                  email={comment.user.email}
-                  firstName={comment.fistName}
-                  lastName={comment.lastName}
+                  {...comment}
+                  loggedIn={user ? true : false}
                 />
               ))}
             </AnimateHeight>
@@ -147,7 +150,7 @@ export const getServerSideProps = async (ctx: NextPageContext) => {
   const { host } = ctx.req?.headers as any;
   const getPost = await getPostComments(query?.slug as string, host);
 
-  return { props: { query, getPost } };
+  return { props: { query, getPost, host } };
 };
 
 export default newsAndBlogs;

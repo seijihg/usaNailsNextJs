@@ -3,27 +3,33 @@ import { millisToMinutesAndSeconds } from "src/lib/functions";
 import EditCmts from "./EditCmts";
 import { Field, Formik, Form } from "formik";
 import { updateComment } from "src/lib/apis/comments";
+import Cookies from "js-cookie";
 
 interface ICommentProps {
-  commentId: string;
+  id: string;
   content: string;
   updatedAt: string;
-  email: string;
-  firstName: string | null;
-  lastName: string | null;
+  loggedIn: boolean;
+  user: {
+    id: number;
+    email: string;
+    firstName: string;
+    lastName: string;
+  };
 }
 
 const PostBlogComment: FC<ICommentProps> = ({
-  commentId,
-  content,
+  user,
   updatedAt,
-  email,
-  firstName,
-  lastName,
+  content,
+  id,
+  loggedIn,
 }) => {
   const fullName =
-    (firstName ? firstName : "") + " " + (lastName ? lastName : "");
-  const nickName = email.split("@")[0];
+    (user.firstName ? user.firstName : "") +
+    " " +
+    (user.lastName ? user.lastName : "");
+  const nickName = user.email.split("@")[0];
   const diffTime = Math.abs(Date.now() - Date.parse(updatedAt));
   const [menu, setMenu] = useState<boolean>(false);
   const [isEditComment, setIsEditComment] = useState<boolean>(false);
@@ -39,8 +45,10 @@ const PostBlogComment: FC<ICommentProps> = ({
                 initialValues={{ comment: content }}
                 onSubmit={async (values, actions) => {
                   actions.setSubmitting(true);
-                  const res = await updateComment(values.comment, commentId);
+                  const token = Cookies.get("token");
+                  const res = await updateComment(values.comment, id, token);
                   // need to refresh all comments and update need to be logged in to edit comments
+                  setIsEditComment(false);
                   console.log(res);
                 }}
               >
@@ -55,12 +63,16 @@ const PostBlogComment: FC<ICommentProps> = ({
             )}
           </div>
         </div>
-        <div className="comment-bg" onClick={() => setMenu(!menu)}></div>
-        {menu && (
-          <EditCmts
-            setIsEditComment={setIsEditComment}
-            isEditComment={isEditComment}
-          />
+        {loggedIn && (
+          <>
+            <div className="comment-bg" onClick={() => setMenu(!menu)}></div>
+            {menu && (
+              <EditCmts
+                setIsEditComment={setIsEditComment}
+                isEditComment={isEditComment}
+              />
+            )}
+          </>
         )}
       </div>
 

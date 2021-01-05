@@ -12,8 +12,10 @@ export const sendEmail = async (data: FormData) => {
     method: "POST",
     body: data,
   });
-
+  console.log(res);
   const body = await res.json();
+  console.log(body);
+  debugger;
   return body;
 };
 
