@@ -10,7 +10,7 @@ const Contact: FunctionComponent = () => {
 
   const emailSubmitHandler = async (e: FormEvent) => {
     e.preventDefault();
-
+    
     const emailBody = {
       name: name,
       email: email,

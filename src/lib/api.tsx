@@ -1,4 +1,4 @@
-const baseUrl =
+export const baseUrl =
   typeof window !== "undefined" && location.hostname === "localhost"
     ? "http://localhost:8080"
     : "https://usa-nails.uk";
@@ -18,15 +18,19 @@ export const sendEmail = async (data: {
     },
     body: JSON.stringify(data),
   });
-
+  
   const body = await res.json();
-  console.log(body);
   return body;
 };
 
 // Comments API.
-export const getPostComments = async (slug: string) => {
-  const res = await fetch(`${baseUrl}/api_v1/post/${slug}`);
+export const getPostComments = async (slug: string, host: string) => {
+  const url =
+    host.split(":")[0] === "localhost"
+      ? "http://localhost:8080"
+      : "https://usa-nails.uk";
+
+  const res = await fetch(`${url}/api_v1/post/${slug}`);
 
   const comments = await res.json();
   return comments;
@@ -73,16 +77,22 @@ export const loginSignup = async (data: ReadableStream, endPoint: string) => {
 
 // Get a user API
 
-const userEP = `${baseUrl}/api_v1/user/get-me`;
+export const getMe = async (token: string, host: string) => {
+  const url =
+    host?.split(":")[0] === "localhost"
+      ? "http://localhost:8080"
+      : "https://usa-nails.uk";
 
-export const getMe = async (token: string) => {
-  const res = await fetch(userEP, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + token,
-    },
-  });
+  const res = await fetch(
+    `${typeof window === "undefined" ? url : baseUrl}/api_v1/user/get-me`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    }
+  );
 
   const user = await res.json();
   return user;

@@ -27,13 +27,18 @@ const newOrBlogQuery = gql`
 interface INewsAndBlogsProps {
   query: any;
   getPost: any;
+  host: string;
 }
 
 const validationSchema = Yup.object({
   comment: Yup.string().min(5, "Comments must be at least 5 characters"),
 });
 
-const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query, getPost }) => {
+const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({
+  query,
+  getPost,
+  host,
+}) => {
   const { loading, error, data } = useQuery(newOrBlogQuery, {
     variables: { id: query.slug },
   });
@@ -44,11 +49,15 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query, getPost }) => {
   const [hideCmts, setHideCmts] = useState<boolean>(false);
   const lengthComments = comments.length;
 
+  console.log(host);
+
   useEffect(() => {
     if (getPost) {
       setComments(getPost.comments);
     }
   }, [getPost]);
+
+  console.log(comments);
 
   return (
     <>
@@ -83,11 +92,8 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query, getPost }) => {
               {comments.map((comment: any) => (
                 <PostBlogComment
                   key={comment.id}
-                  content={comment.content}
-                  updatedAt={comment.updatedAt}
-                  email={comment.user.email}
-                  firstName={comment.fistName}
-                  lastName={comment.lastName}
+                  {...comment}
+                  loggedIn={user ? true : false}
                 />
               ))}
             </AnimateHeight>
@@ -105,7 +111,7 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query, getPost }) => {
                     token
                   )
                     .then((res) => {
-                      getPostComments(query.slug)
+                      getPostComments(query.slug, location.host)
                         .then((res) => setComments(res.comments))
                         .catch(console.log);
                       resetForm();
@@ -141,8 +147,10 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query, getPost }) => {
 
 export const getServerSideProps = async (ctx: NextPageContext) => {
   const { query } = ctx;
-  const getPost = await getPostComments(query?.slug as string);
-  return { props: { query, getPost } };
+  const { host } = ctx.req?.headers as any;
+  const getPost = await getPostComments(query?.slug as string, host);
+
+  return { props: { query, getPost, host } };
 };
 
 export default newsAndBlogs;
