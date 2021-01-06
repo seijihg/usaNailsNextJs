@@ -102,7 +102,7 @@ const userProfile = () => {
                     : { value: "", label: "" },
                   dob: user.dob ? new Date(user.dob) : new Date(pastYear),
                 }}
-                onSubmit={() => console.log("submitting")}
+                onSubmit={(values) => updateUser(values, user.id, token)}
               >
                 {({ handleSubmit, isSubmitting, values, setFieldValue }) => (
                   <>

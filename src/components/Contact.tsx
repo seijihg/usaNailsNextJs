@@ -8,21 +8,21 @@ const Contact: FunctionComponent = () => {
   const [email, setEmail] = useState<string>("");
   const [emailContent, setEmailContent] = useState<string>("");
 
-  const emailSubmitHandler = (e: FormEvent) => {
+  const emailSubmitHandler = async (e: FormEvent) => {
     e.preventDefault();
-
-    // let data = new FormData();
-    // data.append("your-name", name);
-    // data.append("your-email", email);
-    // data.append("your-message", emailContent);
-
-    let emailBody = {
+    
+    const emailBody = {
       name: name,
       email: email,
       content: emailContent,
     };
 
-    sendEmail(emailBody);
+    const res = await sendEmail(emailBody);
+
+    if (res.hasOwnProperty("errors")) {
+      console.log("Error sending an email.");
+      return;
+    }
 
     setEmailContent("");
     setName("");
