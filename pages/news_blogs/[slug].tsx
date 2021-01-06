@@ -142,7 +142,6 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({ query, getPost }) => {
 export const getServerSideProps = async (ctx: NextPageContext) => {
   const { query } = ctx;
   const getPost = await getPostComments(query?.slug as string);
-
   return { props: { query, getPost } };
 };
 
