@@ -49,8 +49,6 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({
   const [hideCmts, setHideCmts] = useState<boolean>(false);
   const lengthComments = comments.length;
 
-  console.log(host);
-
   useEffect(() => {
     if (getPost) {
       setComments(getPost.comments);
@@ -58,6 +56,7 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({
   }, [getPost]);
 
   console.log(comments);
+  console.log(user);
 
   return (
     <>

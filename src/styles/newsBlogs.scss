@@ -150,13 +150,26 @@
         color: $offwhite-colour;
       }
     }
-    .comment-bg {
-      margin: auto;
-      background-image: url("/assets/img/icons/iconspack.png");
-      background-repeat: no-repeat;
-      width: 16px;
-      height: 16px;
-      background-position: 0 -1025px;
+    .comment-bg-top {
+      margin: auto 0.8rem;
+      border-radius: 20px;
+      padding: 0.3rem;
+      cursor: pointer;
+      transition: all 250ms;
+
+      &:hover {
+        background: $dark-gray-colour;
+        transition: all 250ms;
+      }
+      .comment-bg {
+        margin: auto;
+        background-image: url("/assets/img/icons/iconspack.png");
+        background-repeat: no-repeat;
+        width: 16px;
+        height: 16px;
+        background-position: 0 -1025px;
+        filter: opacity(0.75);
+      }
     }
 
     .comments-hidden-menu {

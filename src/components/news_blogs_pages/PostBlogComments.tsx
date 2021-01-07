@@ -4,6 +4,15 @@ import EditCmts from "./EditCmts";
 import { Field, Formik, Form } from "formik";
 import { updateComment } from "src/lib/apis/comments";
 import Cookies from "js-cookie";
+import CSS from "csstype";
+
+const dotsStyling: CSS.Properties = {
+  background: "#99525d",
+  margin: "auto .8rem",
+  borderRadius: "20px",
+  padding: ".3rem",
+  cursor: "pointer",
+};
 
 interface ICommentProps {
   id: string;
@@ -65,7 +74,9 @@ const PostBlogComment: FC<ICommentProps> = ({
         </div>
         {loggedIn && (
           <>
-            <div className="comment-bg" onClick={() => setMenu(!menu)}></div>
+            <div className="comment-bg-top" onClick={() => setMenu(!menu)}>
+              <div className="comment-bg"></div>
+            </div>
             {menu && (
               <EditCmts
                 setIsEditComment={setIsEditComment}
