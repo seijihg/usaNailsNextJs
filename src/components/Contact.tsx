@@ -30,7 +30,7 @@ const Contact: FunctionComponent = () => {
   const [email, setEmail] = useState<string>("");
   const [emailContent, setEmailContent] = useState<string>("");
 
-  const [emailError, setEmailError] = useState<boolean>(true);
+  const [emailError, setEmailError] = useState<boolean>(false);
 
   const emailSubmitHandler = async (e: FormEvent) => {
     e.preventDefault();
@@ -45,6 +45,7 @@ const Contact: FunctionComponent = () => {
 
     if (res.hasOwnProperty("errors")) {
       console.log("Error sending an email.");
+      setEmailError(true);
       return;
     }
 
@@ -97,10 +98,7 @@ const Contact: FunctionComponent = () => {
         <form onSubmit={emailSubmitHandler}>
           {emailError ? (
             <div style={emailErrStyle}>
-              <div
-                style={emailErrMess}
-                onClick={() => setEmailError(!emailError)}
-              >
+              <div style={emailErrMess} onClick={() => setEmailError(false)}>
                 There was a problem sending the form. Please try again later.
               </div>
             </div>
