@@ -6,14 +6,6 @@ import { updateComment } from "src/lib/apis/comments";
 import Cookies from "js-cookie";
 import CSS from "csstype";
 
-const dotsStyling: CSS.Properties = {
-  background: "#99525d",
-  margin: "auto .8rem",
-  borderRadius: "20px",
-  padding: ".3rem",
-  cursor: "pointer",
-};
-
 interface ICommentProps {
   id: string;
   content: string;
@@ -26,6 +18,11 @@ interface ICommentProps {
     lastName: string;
   };
 }
+
+const cancelStyle: CSS.Properties = {
+  cursor: "pointer",
+  color: "#99525d",
+};
 
 const PostBlogComment: FC<ICommentProps> = ({
   user,
@@ -62,7 +59,16 @@ const PostBlogComment: FC<ICommentProps> = ({
                 }}
               >
                 {({ values, errors, handleSubmit }) => (
-                  <Form onSubmit={handleSubmit}>
+                  <Form
+                    style={{ marginBottom: ".5rem" }}
+                    onSubmit={handleSubmit}
+                    onKeyDown={(e) => {
+                      if (e.keyCode === 27) {
+                        setIsEditComment(false);
+                        console.log("You pressed the escape key!");
+                      }
+                    }}
+                  >
                     <Field name="comment" type="input" required />
                   </Form>
                 )}
@@ -71,6 +77,15 @@ const PostBlogComment: FC<ICommentProps> = ({
               <p>{content}</p>
             )}
           </div>
+          {isEditComment && (
+            <p style={{ margin: "0" }}>
+              Press Esc to{" "}
+              <span style={cancelStyle} onClick={() => setIsEditComment(false)}>
+                cancel
+              </span>
+              .
+            </p>
+          )}
         </div>
         {loggedIn && (
           <>
@@ -81,6 +96,7 @@ const PostBlogComment: FC<ICommentProps> = ({
               <EditCmts
                 setIsEditComment={setIsEditComment}
                 isEditComment={isEditComment}
+                setMenu={setMenu}
               />
             )}
           </>
