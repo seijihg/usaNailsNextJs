@@ -43,7 +43,7 @@ const PostBlogComment: FC<ICommentProps> = ({
   return (
     <>
       <div className="comment-flex">
-        <div className="comment-tab">
+        <div className="comment-tab" onClick={() => setMenu(false)}>
           <h3>{fullName === " " ? nickName : fullName}</h3>
           <div>
             {isEditComment ? (
