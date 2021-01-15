@@ -119,6 +119,9 @@ const PostBlogComment: FC<ICommentProps> = ({
                 setIsEditComment={setIsEditComment}
                 isEditComment={isEditComment}
                 setMenu={setMenu}
+                cmtId={id}
+                setComments={setComments}
+                query={query}
               />
             )}
           </>

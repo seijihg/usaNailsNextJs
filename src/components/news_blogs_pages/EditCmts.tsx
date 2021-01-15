@@ -1,10 +1,16 @@
 import { FC, useState } from "react";
 import CSS from "csstype";
+import { deleteComment } from "src/lib/apis/comments";
+import Cookies from "js-cookie";
+import { getPostComments } from "src/lib/api";
 
 interface IEditCmtsProps {
   setIsEditComment: (isEditComment: boolean) => void;
   isEditComment: boolean;
   setMenu: (setMenu: boolean) => void;
+  cmtId: string;
+  setComments: (cmts: any) => void;
+  query: { slug: string };
 }
 
 const styleMouse: CSS.Properties = {
@@ -23,6 +29,9 @@ const EditCmts: FC<IEditCmtsProps> = ({
   setIsEditComment,
   isEditComment,
   setMenu,
+  cmtId,
+  query,
+  setComments,
 }) => {
   const [mouseOver, setMouseOver] = useState<{
     edit: boolean;
@@ -31,7 +40,7 @@ const EditCmts: FC<IEditCmtsProps> = ({
     edit: false,
     delete: false,
   });
-
+  console.log(cmtId);
   return (
     <div className="comments-hidden-menu">
       <div
@@ -57,6 +66,14 @@ const EditCmts: FC<IEditCmtsProps> = ({
         }
         onMouseOver={() => setMouseOver({ ...mouseOver, delete: true })}
         onMouseOut={() => setMouseOver({ ...mouseOver, delete: false })}
+        onClick={async () => {
+          const token = Cookies.get("token");
+          await deleteComment(cmtId, token);
+
+          // Refreshing comments after deleting.
+          const getCmtsRes = await getPostComments(query.slug, location.host);
+          setComments(getCmtsRes.comments);
+        }}
       >
         Delete
       </div>
