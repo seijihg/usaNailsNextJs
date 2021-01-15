@@ -1,10 +1,11 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { millisToMinutesAndSeconds } from "src/lib/functions";
 import EditCmts from "./EditCmts";
 import { Field, Formik, Form } from "formik";
 import { updateComment } from "src/lib/apis/comments";
 import Cookies from "js-cookie";
 import CSS from "csstype";
+import { getPostComments } from "src/lib/api";
 
 interface ICommentProps {
   id: string;
@@ -17,6 +18,9 @@ interface ICommentProps {
     firstName: string;
     lastName: string;
   };
+  userId: number;
+  setComments: (cmts: any) => void;
+  query: { slug: string };
 }
 
 const cancelStyle: CSS.Properties = {
@@ -30,6 +34,9 @@ const PostBlogComment: FC<ICommentProps> = ({
   content,
   id,
   loggedIn,
+  userId,
+  query,
+  setComments,
 }) => {
   const fullName =
     (user.firstName ? user.firstName : "") +
@@ -39,6 +46,14 @@ const PostBlogComment: FC<ICommentProps> = ({
   const diffTime = Math.abs(Date.now() - Date.parse(updatedAt));
   const [menu, setMenu] = useState<boolean>(false);
   const [isEditComment, setIsEditComment] = useState<boolean>(false);
+  const [sameUserCmt, setSameUserCmt] = useState<boolean>(false);
+
+  useEffect(() => {
+    const loggedUserId = userId;
+    const cmtUserId = user.id;
+
+    setSameUserCmt(loggedUserId === cmtUserId ? true : false);
+  }, [userId]);
 
   return (
     <>
@@ -53,7 +68,14 @@ const PostBlogComment: FC<ICommentProps> = ({
                   actions.setSubmitting(true);
                   const token = Cookies.get("token");
                   const res = await updateComment(values.comment, id, token);
-                  // need to refresh all comments and update need to be logged in to edit comments
+
+                  // Refreshing comments after editing.
+                  const getCmtsRes = await getPostComments(
+                    query.slug,
+                    location.host
+                  );
+                  setComments(getCmtsRes.comments);
+
                   setIsEditComment(false);
                   console.log(res);
                 }}
@@ -87,7 +109,7 @@ const PostBlogComment: FC<ICommentProps> = ({
             </p>
           )}
         </div>
-        {loggedIn && (
+        {loggedIn && sameUserCmt && (
           <>
             <div className="comment-bg-top" onClick={() => setMenu(!menu)}>
               <div className="comment-bg"></div>
