@@ -14,6 +14,10 @@
     display: grid;
     grid-gap: 2rem;
     grid-template-columns: repeat(2, 1fr);
+
+    form {
+      position: relative;
+    }
   }
   input,
   textarea {
@@ -27,6 +31,7 @@
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: repeat(2, 1fr);
+
     .email {
       a {
         color: $pink-colour;

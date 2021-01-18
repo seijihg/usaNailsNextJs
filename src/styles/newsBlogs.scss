@@ -150,23 +150,38 @@
         color: $offwhite-colour;
       }
     }
-    .comment-bg {
-      margin: auto;
-      background-image: url("/assets/img/icons/iconspack.png");
-      background-repeat: no-repeat;
-      width: 16px;
-      height: 16px;
-      background-position: 0 -1025px;
+    .comment-bg-top {
+      margin: auto 0.3rem;
+      border-radius: 20px;
+      padding: 0.5rem;
+      cursor: pointer;
+      transition: all 250ms;
+
+      &:hover {
+        background: $dark-gray-colour;
+        transition: all 250ms;
+      }
+      .comment-bg {
+        margin: auto;
+        background-image: url("/assets/img/icons/iconspack.png");
+        background-repeat: no-repeat;
+        width: 16px;
+        height: 16px;
+        background-position: 0 -1025px;
+        filter: opacity(0.75);
+      }
     }
 
     .comments-hidden-menu {
       position: absolute;
       background: $dark-gray-colour;
+      color: $offwhite-colour;
       border: 1px solid $offwhite-colour;
       border-radius: 5px;
       right: 0.5rem;
       bottom: -2rem;
-      padding: 0.75rem;
+      padding: 0.5rem;
+      font-size: 0.8rem;
       li {
         list-style: none;
       }

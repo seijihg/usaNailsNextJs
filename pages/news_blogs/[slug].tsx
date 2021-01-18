@@ -12,6 +12,7 @@ import Cookies from "js-cookie";
 import PostBlogComment from "src/components/news_blogs_pages/PostBlogComments";
 import { ReactSVG } from "react-svg";
 import AnimateHeight from "react-animate-height";
+import { sortBy } from "lodash";
 
 const newOrBlogQuery = gql`
   query($id: ID!) {
@@ -49,15 +50,16 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({
   const [hideCmts, setHideCmts] = useState<boolean>(false);
   const lengthComments = comments.length;
 
-  console.log(host);
-
   useEffect(() => {
     if (getPost) {
-      setComments(getPost.comments);
+      const sorted = sortBy(getPost.comments, [
+        function (o) {
+          return o.createdAt;
+        },
+      ]);
+      setComments(sorted as any);
     }
   }, [getPost]);
-
-  console.log(comments);
 
   return (
     <>
@@ -94,6 +96,9 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({
                   key={comment.id}
                   {...comment}
                   loggedIn={user ? true : false}
+                  userId={user?.id}
+                  setComments={setComments}
+                  query={query}
                 />
               ))}
             </AnimateHeight>
@@ -112,8 +117,11 @@ const newsAndBlogs: NextPage<INewsAndBlogsProps> = ({
                   )
                     .then((res) => {
                       getPostComments(query.slug, location.host)
-                        .then((res) => setComments(res.comments))
+                        .then((res) => {
+                          setComments(res.comments);
+                        })
                         .catch(console.log);
+
                       resetForm();
                       setSubmitting(false);
                     })
