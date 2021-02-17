@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "src/lib/UserContext";
 import { Formik, Form, Field } from "formik";
 import Select from "react-select";
@@ -6,6 +6,20 @@ import DatePicker from "react-datepicker";
 import { uploadAvatar, updateUser } from "src/lib/api";
 import Cookies from "js-cookie";
 import Router from "next/router";
+
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      "& > *": {
+        margin: theme.spacing(1),
+      },
+    },
+  })
+);
 
 const options = [
   { value: "mr", label: "Mr." },
@@ -28,6 +42,8 @@ const userProfile = () => {
   const [loadingUpload, setLoadingUpload] = useState<boolean>(false);
   const token = Cookies.get("token");
 
+  const classes = useStyles();
+
   useEffect(() => {
     if (user) {
       updateDisplayAvatar(user.avatar);
@@ -46,6 +62,10 @@ const userProfile = () => {
 
   return (
     <>
+      <Typography variant="h2" gutterBottom>
+        Welcome to React
+      </Typography>
+
       {user && (
         <div className="profile">
           <div className="left-side">
@@ -156,6 +176,7 @@ const userProfile = () => {
                       />
                       {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
                       <button hidden={true} />
+                      test
                     </Form>
                   </>
                 )}

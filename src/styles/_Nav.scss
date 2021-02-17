@@ -46,29 +46,16 @@
       position: absolute;
       right: 0;
     }
+  }
+}
 
-    .nav-bar {
-      display: block;
-      text-align: right;
-      position: absolute;
-      top: 5rem;
-      background: $offwhite-colour;
-      padding-right: 1rem;
-      padding-bottom: 1rem;
-      box-shadow: 2px 2px 5px $pink-dark-colour;
+.icon_login {
+  padding-left: 4rem;
+  svg {
+    cursor: pointer;
 
-      &.nav-bar-anim1 {
-        right: -10rem;
-        transition: all 500ms;
-      }
-      &.nav-bar-anim2 {
-        right: 1rem;
-        transition: all 500ms;
-      }
-
-      li {
-        margin-top: 1rem;
-      }
+    path {
+      fill: $pink-dark-colour;
     }
   }
 }
