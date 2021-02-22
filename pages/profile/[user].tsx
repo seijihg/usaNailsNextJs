@@ -62,10 +62,6 @@ const userProfile = () => {
 
   return (
     <>
-      <Typography variant="h2" gutterBottom>
-        Welcome to React
-      </Typography>
-
       {user && (
         <div className="profile">
           <div className="left-side">
@@ -176,7 +172,6 @@ const userProfile = () => {
                       />
                       {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
                       <button hidden={true} />
-                      test
                     </Form>
                   </>
                 )}
