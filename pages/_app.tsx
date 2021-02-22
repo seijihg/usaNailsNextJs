@@ -8,6 +8,8 @@ import { UserContext } from "src/lib/UserContext";
 import { getMe } from "src/lib/api";
 import { useApollo } from "src/lib/apolloClient";
 import "react-datepicker/dist/react-datepicker.css";
+import theme from "../src/styles/theme";
+import { ThemeProvider } from "@material-ui/core/styles";
 
 interface CookiesPageContext extends NextPageContext {
   ctx: NextPageContext;
@@ -19,6 +21,12 @@ const MyApp: NextPage<any> = ({ Component, pageProps, loggedUser }) => {
   const [quickLogin, setQuickLogin] = useState<boolean>(false);
 
   useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector("#jss-server-side");
+    if (jssStyles) {
+      jssStyles.parentElement!.removeChild(jssStyles);
+    }
+
     loggedUser ? setUser(loggedUser) : setUser(null);
   }, [loggedUser]);
 
@@ -31,9 +39,11 @@ const MyApp: NextPage<any> = ({ Component, pageProps, loggedUser }) => {
   return (
     <ApolloProvider client={apolloClient}>
       <UserContext.Provider value={memoUser}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <ThemeProvider theme={theme}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
       </UserContext.Provider>
     </ApolloProvider>
   );

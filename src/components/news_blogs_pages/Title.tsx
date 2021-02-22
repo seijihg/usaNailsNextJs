@@ -1,6 +1,7 @@
 import { FunctionComponent } from "react";
 import { dateToReadableTextDate } from "src/lib/functions";
 import Link from "next/link";
+import ReactHtmlParser from "react-html-parser";
 
 interface INewTitleProps {
   title: string;
@@ -14,7 +15,7 @@ const NewTitle: FunctionComponent<INewTitleProps> = ({ title, slug, date }) => {
       <li>
         <h3>{dateToReadableTextDate(date.toString())}</h3>
         <Link href="/news_blogs/[slug]" as={`/news_blogs/${slug}`}>
-          <a>{title}</a>
+          <a>{ReactHtmlParser(title)}</a>
         </Link>
       </li>
     </>
