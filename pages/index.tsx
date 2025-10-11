@@ -1,6 +1,4 @@
 import { NextPage } from "next";
-import News from "src/components/news/News";
-import Blogs from "src/components/blogs/Blogs";
 import Prices from "src/components/price_list/Prices";
 import Contact from "src/components/Contact";
 import ImageSlidesAtIndex from "src/components/ImageSlidesAtIndex";
@@ -40,18 +38,14 @@ const Index: NextPage = () => {
         <div className="index-follow-us">
           <h1>FOLLOW US ON</h1>
           <div className="icons">
-            <Link href="//www.facebook.com/usanailsberkhamsted">
-              <a target="_blank">
-                <img src="/assets/img/icons/facebook.png" alt="fb icon" />
-              </a>
+            <Link href="https://www.facebook.com/usanailsberkhamsted" target="_blank">
+              <img src="/assets/img/icons/facebook.png" alt="fb icon" />
             </Link>
-            <Link href="//www.instagram.com/usa_nails_berkhamsted/">
-              <a target="_blank">
-                <img
-                  src="/assets/img/icons/instagram.png"
-                  alt="instagram icon"
-                />
-              </a>
+            <Link href="https://www.instagram.com/usa_nails_berkhamsted/" target="_blank">
+              <img
+                src="/assets/img/icons/instagram.png"
+                alt="instagram icon"
+              />
             </Link>
           </div>
           <h1>ADDRESS</h1>
@@ -59,15 +53,6 @@ const Index: NextPage = () => {
         </div>
         <div className="index-call-appointment">
           <h1>Call +44 1442 878 188 To Make Your Appointment</h1>
-        </div>
-        <div className="index-latest-news">
-          <h1>LATEST NEWS AND BLOGS</h1>
-        </div>
-        <div className="index-news">
-          <News />
-        </div>
-        <div className="index-blog">
-          <Blogs />
         </div>
         <div className="index-our-services">
           <h1>OUR SERVICES</h1>

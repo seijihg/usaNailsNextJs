@@ -77,18 +77,14 @@ const Contact: FunctionComponent = () => {
           <div className="social">
             <h2>SOCIAL</h2>
             <div>
-              <Link href="//www.facebook.com/usanailsberkhamsted">
-                <a target="_blank">
-                  <img src="/assets/img/icons/facebook.png" alt="fb icon" />
-                </a>
+              <Link href="https://www.facebook.com/usanailsberkhamsted" target="_blank">
+                <img src="/assets/img/icons/facebook.png" alt="fb icon" />
               </Link>
-              <Link href="//www.instagram.com/usa_nails_berkhamsted/">
-                <a target="_blank">
-                  <img
-                    src="/assets/img/icons/instagram.png"
-                    alt="instagram icon"
-                  />
-                </a>
+              <Link href="https://www.instagram.com/usa_nails_berkhamsted/" target="_blank">
+                <img
+                  src="/assets/img/icons/instagram.png"
+                  alt="instagram icon"
+                />
               </Link>
             </div>
           </div>

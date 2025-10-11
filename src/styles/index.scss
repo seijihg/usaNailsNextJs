@@ -11,8 +11,6 @@
     "index-opening-time index-img-interior index-img-interior index-img-interior"
     "index-img-shop1 index-welcome-brief index-img-shop2 index-follow-us"
     "index-call-appointment index-call-appointment index-call-appointment index-call-appointment"
-    "index-latest-news index-latest-news index-latest-news index-latest-news"
-    "index-news index-news index-blog index-blog"
     "index-our-services index-our-services index-img-shop3 index-img-shop3"
     "index-img-shop4 index-img-shop4 index-price-list index-price-list"
     "about-us about-us reviews reviews"
@@ -25,9 +23,6 @@
       "index-img-shop1 index-welcome-brief"
       "index-img-shop2 index-follow-us"
       "index-call-appointment index-call-appointment"
-      "index-latest-news index-latest-news"
-      "index-news index-news"
-      "index-blog index-blog"
       "index-our-services index-img-shop3"
       "index-img-shop4 index-price-list"
       "about-us reviews"
@@ -61,15 +56,6 @@
   }
   .index-call-appointment {
     grid-area: index-call-appointment;
-  }
-  .index-latest-news {
-    grid-area: index-latest-news;
-  }
-  .index-news {
-    grid-area: index-news;
-  }
-  .index-blog {
-    grid-area: index-blog;
   }
   .index-our-services {
     grid-area: index-our-services;
@@ -168,70 +154,6 @@
     text-align: center;
     background-image: url("/assets/img/interior/index-img-shop5.jpg");
     color: $offwhite-colour;
-  }
-  .index-latest-news {
-    text-align: center;
-    margin: 1rem 0;
-    h1 {
-      font-size: 1.2em;
-    }
-  }
-  .index-news {
-    background: $gray-colour;
-    padding: 2rem;
-    h1 {
-      font-size: 1em;
-      margin-bottom: 0.25rem;
-    }
-    h4 {
-      color: $pink-colour;
-      margin-bottom: 0.25rem;
-    }
-    .new-content {
-      margin-bottom: 0.5rem;
-    }
-    .latest-news {
-      padding-bottom: 0.75rem;
-      margin-bottom: 1rem;
-      border: solid;
-      border-width: 0 0 1px 0;
-      border-color: $pink-colour;
-    }
-    .read-more {
-      display: flex;
-      justify-content: flex-end;
-      cursor: pointer;
-      transition: color 250ms;
-      font-size: 0.85em;
-      color: $dark-gray-colour;
-
-      &:hover {
-        color: $pink-colour;
-        transition: color 250ms;
-      }
-    }
-  }
-  .index-blog {
-    background: $pink-dark-colour;
-    padding: 2rem;
-    color: $offwhite-colour;
-    h1,
-    h4 {
-      font-size: 1em;
-      margin-bottom: 0.25rem;
-    }
-    h4 {
-      color: $pink-colour;
-      text-transform: capitalize;
-    }
-
-    .latest-blogs {
-      padding-bottom: 0.75rem;
-      margin-bottom: 1rem;
-      border: solid;
-      border-width: 0 0 1px 0;
-      border-color: $pink-colour;
-    }
   }
   .index-our-services {
     padding: 2rem;
@@ -333,12 +255,4 @@
     padding: 2rem;
     background: $pink-dark-colour;
   }
-}
-
-.sub-page-news,
-.sub-page-blogs {
-  margin: auto;
-  max-width: $maxWidth;
-  display: flex;
-  min-height: 100vh;
 }

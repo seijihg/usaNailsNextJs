@@ -1,17 +1,11 @@
-import { FunctionComponent, useState, useEffect, useContext } from "react";
+import { FunctionComponent, useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { UserContext } from "src/lib/UserContext";
-import { ReactSVG } from "react-svg";
-import Cookies from "js-cookie";
-import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
-
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import Typography from "@material-ui/core/Typography";
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import { makeStyles } from "@mui/styles";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
 
 const useStyles = makeStyles({
   list: {
@@ -24,15 +18,10 @@ const useStyles = makeStyles({
 });
 
 const Nav: FunctionComponent = () => {
-  const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const iOS = typeof window !== "undefined" && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   const [smallScreen, setSmallScreen] = useState<boolean>(false);
   const [nav, setNav] = useState<boolean>(false);
-
-  const { user, setUser, quickLogin, setQuickLogin } = useContext<any>(
-    UserContext
-  );
-  const nickName = user?.email?.split("@")[0];
 
   const router = useRouter();
   const styles = useStyles();
@@ -85,24 +74,6 @@ const Nav: FunctionComponent = () => {
               />
             </ListItem>
           </Link>
-          <Link href="/news">
-            <ListItem button onClick={() => setNav(false)}>
-              <ListItemText
-                disableTypography
-                className={styles.list}
-                primary="NEWS"
-              />
-            </ListItem>
-          </Link>
-          <Link href="/blogs">
-            <ListItem button onClick={() => setNav(false)}>
-              <ListItemText
-                disableTypography
-                className={styles.list}
-                primary="BLOGS"
-              />
-            </ListItem>
-          </Link>
           {router.pathname === "/" ? (
             <>
               <ListItem
@@ -144,46 +115,6 @@ const Nav: FunctionComponent = () => {
                   primary="CONTACT"
                 />
               </ListItem>
-              {user ? (
-                <>
-                  <Link href={"/profile/[user]"} as={`/profile/${nickName}`}>
-                    <ListItem button onClick={() => setNav(false)}>
-                      <ListItemText
-                        disableTypography
-                        className={styles.list}
-                        primary={user?.email}
-                      />
-                    </ListItem>
-                  </Link>
-                  <ListItem
-                    button
-                    onClick={() => {
-                      setNav(false);
-                      Cookies.remove("token");
-                      setUser(null);
-                    }}
-                  >
-                    <ListItemText
-                      disableTypography
-                      className={styles.list}
-                      primary="LOGOUT"
-                    />
-                  </ListItem>
-                </>
-              ) : (
-                <ListItem
-                  button
-                  onClick={() => {
-                    setNav(false);
-                    setQuickLogin(!quickLogin);
-                  }}
-                >
-                  <ReactSVG
-                    className="icon_login"
-                    src="/assets/svg/account-circle.svg"
-                  />
-                </ListItem>
-              )}
             </>
           ) : (
             ""
@@ -196,19 +127,7 @@ const Nav: FunctionComponent = () => {
   const menuList = (
     <ul className={"nav-bar"}>
       <li className="button">
-        <Link href="/">
-          <a>HOME</a>
-        </Link>
-      </li>
-      <li className="button">
-        <Link href="/news">
-          <a>NEWS</a>
-        </Link>
-      </li>
-      <li className="button">
-        <Link href="/blogs">
-          <a>BLOGS</a>
-        </Link>
+        <Link href="/">HOME</Link>
       </li>
       {router.pathname === "/" ? (
         <>
@@ -225,29 +144,6 @@ const Nav: FunctionComponent = () => {
       ) : (
         ""
       )}
-      {user ? (
-        <>
-          <li className="button">
-            <Link href={"/profile/[user]"} as={`/profile/${nickName}`}>
-              <a>{user.email}</a>
-            </Link>
-          </li>
-          <li
-            className="button"
-            onClick={() => {
-              Cookies.remove("token");
-              setUser(null);
-            }}
-          >
-            LOG OUT
-          </li>
-        </>
-      ) : (
-        <ReactSVG
-          src="/assets/svg/account-circle.svg"
-          onClick={() => setQuickLogin(!quickLogin)}
-        />
-      )}
     </ul>
   );
 
@@ -255,13 +151,11 @@ const Nav: FunctionComponent = () => {
     <>
       <div className="nav-main">
         <Link href="/">
-          <a>
-            <img
-              className="index-logo"
-              src="/assets/img/usanails_logo_ver2.png"
-              alt="usa nails logo"
-            />
-          </a>
+          <img
+            className="index-logo"
+            src="/assets/img/usanails_logo_ver2.png"
+            alt="usa nails logo"
+          />
         </Link>
         {smallScreen && drawer}
 

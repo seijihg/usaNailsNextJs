@@ -1,20 +1,38 @@
-const withPlugins = require("next-compose-plugins");
-const withImages = require("next-images");
-const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
-
-const path = require("path");
-
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack: (config, options) => {
-    if (config.resolve.plugins) {
-      config.resolve.plugins.push(new TsconfigPathsPlugin());
-    } else {
-      config.resolve.plugins = [new TsconfigPathsPlugin()];
-    }
+  // Enable React strict mode for better development experience
+  reactStrictMode: true,
 
+  // Image optimization configuration for static export
+  images: {
+    unoptimized: true, // Required for static export
+  },
+
+  // Sass/SCSS support is now built-in
+  sassOptions: {
+    includePaths: ['./src/styles'],
+  },
+
+  // TypeScript and ESLint configuration
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    ignoreBuildErrors: false,
+  },
+
+  // Webpack configuration for path aliases
+  webpack: (config) => {
+    // Path aliases are now handled by TypeScript paths in tsconfig.json
+    // No need for tsconfig-paths-webpack-plugin anymore
     return config;
   },
-  target: "serverless",
+
+  // Static export configuration
+  output: 'export',
+
+  // Disable features not supported in static export
+  trailingSlash: true,
 };
 
-module.exports = withPlugins([[withImages]], nextConfig);
+module.exports = nextConfig;

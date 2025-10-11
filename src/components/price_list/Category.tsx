@@ -8,7 +8,7 @@ interface ICategoryProps {
 
 const Category: FunctionComponent<ICategoryProps> = ({ category }) => {
   const [categoryHeight, setCategoryHeight] = useState<boolean>(false);
-  const { edges: subCategories } = category.children;
+  const subCategories = category.children;
   return (
     <div>
       <h2
@@ -19,7 +19,7 @@ const Category: FunctionComponent<ICategoryProps> = ({ category }) => {
       </h2>
       <AnimateHeight duration={500} height={categoryHeight ? "auto" : 0}>
         {subCategories.map((sub: any) => {
-          return <SubCategory key={sub.node.id} category={sub} />;
+          return <SubCategory key={sub.id} category={sub} />;
         })}
       </AnimateHeight>
     </div>

@@ -6,13 +6,13 @@ interface ISubProps {
 }
 
 const SubCategory: FunctionComponent<ISubProps> = ({ category }) => {
-  const { name, prices } = category.node;
+  const { name, prices } = category;
 
   return (
     <div className="sub-category">
       <h2>_ {name}</h2>
       <ul>
-        {prices?.nodes.map((price: any) => {
+        {prices?.map((price: any) => {
           return <Service key={price.id} {...price} />;
         })}
       </ul>
